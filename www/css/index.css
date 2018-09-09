@@ -1,0 +1,37 @@
+@charset "ISO-8859-1";
+/* CSS Document */
+
+body {
+  background-image: url("../img/login.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+}
+
+h1 {
+  font-style: italic;
+  text-shadow: 1px 1px #666, 2px 2px #86D6D3, 3px 3px #666, 4px 4px #000000;
+}
+
+h2 {
+  font-style: italic;
+  text-shadow: 2px 2px #000000;
+  margin-left: 55px;
+}
+
+label {
+  color: #ffffff;
+  font-size: 18px;
+  text-shadow: 1px 2px #000000;
+}
+
+
+p {
+  color: white;
+  text-align: justify;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 18px;
+  font-family: arial;
+}
