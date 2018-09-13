@@ -21,6 +21,12 @@ a {
   color: white;
 }
 
+.tabla {
+  margin-top: 10px;
+  background-color: white;
+  border-radius: 5px;
+}
+
 /* Dropdown Button */
 .dropbtn {
     background-color: #4CAF50;

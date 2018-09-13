@@ -17,33 +17,10 @@
   </head>
   <body>
 
-    <div class="container-fluid">
-      <button class="dropbtn"><a href="index.php" target="_blank">Ventas</a></button>
-      <button class="dropbtn" href="stock.php">Stock</button>
-      <button class="dropbtn" href="stock.php">Anticipo de Proveedores</button>
-      <button class="dropbtn" href="stock.php">Ingreso de Mercaderia</button>
-      <button class="dropbtn" href="stock.php">Deudores</button>
-      <div class="dropdown">
-        <button class="dropbtn">Gestión de Stock</button>
-        <div class="dropdown-content">
-          <a href="agregar_producto.php">Productos</a>
-          <a href="#">Proveedores</a>
-          <a href="#">Lotes</a>
-          <a href="#">Pedidos</a>
-          <a href="#">Ventas</a>
-          <a href="#">Clientes</a>
-          <a href="#">Deudas</a>
-        </div>
-      </div>
+    <?php require 'include/menu_principal.php'; ?>
 
-    </div>
+    
 
-
-    <footer class="page-footer font-small blue" style="margin-top: 730px">
-      <div class="footer-copyright text-center py-3" style="color: white; background-color: black">© 2018 Copyright:
-        <a style="color: lightblue"> Instituto Superior Capacitas - Juan Imoff, Ignacio Bressa, Facundo Sautú, Ramiro Lezcano.</a>
-      </div>
-    </footer>
-
+    <?php require 'include/footer.php'; ?>
   </body>
 </html>
