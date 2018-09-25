@@ -2,17 +2,14 @@
 /* CSS Document */
 
 body {
-  background-image: url("../img/login.jpg");
+  background-image: url("../img/login1.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   background-position: center center;
 }
 
-h1 {
-  font-style: italic;
-  text-shadow: 1px 1px #666, 2px 2px #86D6D3, 3px 3px #666, 4px 4px #000000;
-}
+
 
 h2 {
   font-style: italic;

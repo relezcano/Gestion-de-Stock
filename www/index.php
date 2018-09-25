@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
-    <title>SC - Software de Control de Stock </title>
+    <title>SSC - Software de Control de Stock </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.css">
@@ -12,40 +12,43 @@
   </head>
   <body>
 
-    <div class="container-fluid" style="margin-top: 180px; margin-right: 100px">
+    <div class="container-fluid" style="margin-top: 75px; margin-right: 100px">
       <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="col-sm-8">
-          <h1 style="font-size: 37px; color: #ffffff"><strong>SC - Software para control de Stock</strong></h1>
-          <h2 style="font-size: 25px; color: #ffffff">Ingrese con su credencial para acceder al menú principal</h2>
-        </div>
-        <div class="col-sm-1"></div>
-      </div>
-      <br><br>
-      <form class="login" action="index.php" method="post">
-      <div class="row">
-        <div class="col-sm-5"></div>
-        <div class="col-sm-1">
-          <label>Usuario</label>
-        </div>
-        <div class="col-sm-6">
-          <input type="text" name="user" placeholder="Ingrese su usuario">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-5"></div>
-        <div class="col-sm-1">
-          <label>Password</label>
-        </div>
-        <div class="col-sm-6">
-          <input type="password" name="pass" placeholder="Ingrese su contraseña">
+        <div class="col-sm-12" style="padding-left: 515px">
+          <img src="img/scs1.png"  height="120" alt="logo">
         </div>
       </div>
       <br>
       <div class="row">
-        <div class="col-sm-6"></div>
+        <div class="col-sm-12" style="padding-left: 345px; padding-top: 5px">
+          <img src="img/slogan1.png"  height="50" alt="logo">
+        </div>
+      </div>
+      <br><br><br><br>
+      <form class="login" action="index.php" method="post">
+      <div class="row">
+        <div class="col-sm-3"></div>
         <div class="col-sm-2">
-          <button style="background-color: aqua; font-family: verdana; font-weight: bolder" type="submit" name="ingresar"><span class="glyphicon glyphicon-log-in"></span><strong> INGRESAR</strong></button>
+          <label style="margin-top: 5px"><span style="padding-left: 200px" class="glyphicon glyphicon-user"></span></label>
+        </div>
+        <div class="col-sm-7" style="padding-left: 60px">
+          <input class="form-control" style="width: 220px" type="text" name="user" placeholder="Ingrese su usuario">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-2">
+          <label style="margin-top: 8px"><span style="padding-left: 200px" class="glyphicon glyphicon-wrench"></span></label>
+        </div>
+        <div class="col-sm-7" style="padding-left: 60px">
+          <input class="form-control" style="width: 220px; margin-top: 5px" type="password" name="pass" placeholder="Ingrese su contraseña">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-5"></div>
+        <div class="col-sm-3" style="padding-left: 80px">
+          <button style="font-family: verdana; font-weight: bolder" type="submit" name="ingresar" class="btn btn-warning btn-md"><span class="glyphicon glyphicon-log-in"></span><strong> INGRESAR</strong></button>
         </div>
         <div class="col-sm-4"></div>
       </div>
@@ -59,25 +62,19 @@
         $user = $_POST['user'];
         $pass = $_POST['pass'];
 
-        class MyDB extends SQLite3 {
-      		function __construct() {
+        require 'include/conexion.php';
 
-      			$this->open('SC_database.db');
-      		}
-      	}
-
-        $db = new MyDB();
-
-        $sql = ("SELECT * FROM users WHERE user = '$user' AND pass = '$pass'");
+        $sql = ("SELECT * FROM Usuarios WHERE username = '$user' AND pass = '$pass'");
         $ret = $db->query($sql);
 
         while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
-          $id = $row['id'];
-          $userName = $row['user'];
-          $password = $row['pass'];
+          $id = $row['id_U'];
           $name = $row['name'];
+          $userName = $row['username'];
+          $password = $row['pass'];
+          $date_alt = $row['date_Alt'];
 
-          $_SESSION['name'] = $name;
+        //  $_SESSION['name'] = $name;
 
 
         if($userName == $user && $password == $pass){
