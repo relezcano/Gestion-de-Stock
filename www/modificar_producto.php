@@ -3,22 +3,22 @@
 
   if (isset($_POST['guardar'])) {
 
-// ADAPTAR DATOS PARA PRODUCTOS...
+    $id = $_POST['id_Prod'];
+    $name = $_POST['name_Prod'];
+    $medida = $_POST['u_Med'];
+    $precio = $_POST['price_V'];
+    $obs = $_POST['obs_Prod'];
+    $marca = $_POST['id_M1'];
+    $tipo = $_POST['id_T1'];
+    // $fecha = date_format(date_create_from_format('Y-m-d', $dateIn), 'd-m-Y');
 
-    $id = $_POST['id'];
-    $name = $_POST['name'];
-    $phone = $_POST['phone'];
-    $dateIn = $_POST['dateIn'];
-    $obs = $_POST['obs'];
-    $fecha = date_format(date_create_from_format('Y-m-d', $dateIn), 'd-m-Y');
-
-    $update = ("UPDATE clients SET name = '$name', phone = '$phone', dateIn = '$fecha', obs = '$obs' WHERE id = '$id'");
+    $update = ("UPDATE Producto SET name_Prod = '$name', u_Med = '$medida', price_V = '$precio', obs_Prod = '$obs', id_M1 = '$marca', id_T1 = '$tipo' WHERE id_Prod = '$id'");
 
     $db->exec($update);
     ?>
 
     <script>
-      window.location.replace('clientes.php');  // redireccionar a otra pagina.
+      window.location.replace('productos.php');  // redireccionar a otra pagina.
     </script>
 
     <?
