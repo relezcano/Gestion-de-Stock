@@ -18,7 +18,7 @@
   <body>
 
 
-    <div class="container" style="margin-top: 50px">
+    <div class="container" style="margin-top: 20px">
 
 
       <div class="row">
@@ -37,7 +37,7 @@
 
         <form class="eliminar" action="clientes.php" method="post">
           <div class="col-sm-2">
-            <button type="submit" name="eliminar" class="btn btn-danger"><strong><span class="glyphicon glyphicon-trash"></span> Eliminar Cliente</strong></button>
+            <button type="submit" name="eliminar" class="btn btn-danger" style="margin-left: 5px"><strong><span class="glyphicon glyphicon-trash"></span> Eliminar Cliente</strong></button>
           </div>
           <div class="col-sm-1">
             <input class="form-control" type="text" name="select2" placeholder="ID">

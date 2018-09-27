@@ -25,19 +25,19 @@
 
         <form class="btnmodificar" action="lotes.php" method="post">
         <div class="col-sm-2">
-          <button type="submit" name="modificar" class="btn btn-warning"><strong><span class="glyphicon glyphicon-pencil"></span> Modificar Lote</strong></button>
+          <button type="submit" name="modificar" class="btn btn-warning" style="margin-left: 10px"><strong><span class="glyphicon glyphicon-pencil"></span> Modificar Lote</strong></button>
         </div>
           <div class="col-sm-1">
-            <input style="margin-left: 12px" class="form-control" type="text" name="select" placeholder="ID">
+            <input class="form-control" type="text" name="select" placeholder="ID">
           </div>
         </form>
 
         <form class="eliminar" action="productos.php" method="post">
           <div class="col-sm-2">
-            <button type="submit" name="eliminar" class="btn btn-danger"><strong><span class="glyphicon glyphicon-trash"></span> Eliminar Lote</strong></button>
+            <button type="submit" name="eliminar" class="btn btn-danger" style="margin-left: 15px"><strong><span class="glyphicon glyphicon-trash"></span> Eliminar Lote</strong></button>
           </div>
           <div class="col-sm-1">
-            <input style="margin-left: 5px" class="form-control" type="text" name="select2" placeholder="ID">
+            <input class="form-control" type="text" name="select2" placeholder="ID">
           </div>
         </form>
 
@@ -75,15 +75,15 @@
               <tbody id="myTable">
                 <tr>
                   <? while($row = $ret->fetchArray(SQLITE3_ASSOC)){ ?>
-                    <td><?echo $row['id_L'];?></td>
-                    <td><?echo $row['cant'];?></td>
-                    <td><?echo $row['price_C'];?></td>
-                    <td><?echo $row['date_Alt'];?></td>
-                    <td><?echo $row['date_Ven'];?></td>
-                    <td><?echo $row['n_Comp'];?></td>
-                    <td><?echo $row['id_Prod1'];?></td>
-                    <td><?echo $row['id_Prov1'];?></td>
-                    <td><?echo $row['obs_L'];?></td>
+                      <td><?echo $row['id_L'];?></td>
+                      <td><?echo $row['cant'];?></td>
+                      <td><?echo $row['price_C'];?></td>
+                      <td><?echo $row['date_Alt'];?></td>
+                      <td><?echo $row['date_Ven'];?></td>
+                      <td><?echo $row['n_Comp'];?></td>
+                      <td><?echo $row['id_Prod1'];?></td>
+                      <td><?echo $row['id_Prov1'];?></td>
+                      <td><?echo $row['obs_L'];?></td>
                 </tr>
                 <?}?>
               </tbody>

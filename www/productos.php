@@ -110,6 +110,10 @@ if (isset($_POST['modificar'])) {
       $tipo = $row['id_T1'];
       $obs = $row['obs_Prod'];
 
+
+      // llamar nombre de la marca y el tipo usando el id de cada uno!!!!!
+
+
       // VER TEMA DE PONER FECHA ACTUAL AUTOMATICAMENTE EN PRODUCTO...
     //  $date = date_format(date_create_from_format('d-m-Y', $dateIn), 'Y-m-d');
 ?>
@@ -211,6 +215,7 @@ if (isset($_POST['modificar'])) {
     </div>
 <br><br>
 <?
+
   }
 }
 }
