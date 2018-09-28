@@ -6,7 +6,7 @@
   <button class="btn btn-warning" type="button" onclick="window.open('deudores.php');" target="_blank"><strong>Deudores</strong></button>
   <div class="dropdown">
     <button class="btn btn-warning"><strong>Gestión de Stock</strong></button>
-    <div class="dropdown-content" style="background-color: #fff7e6; border-top-right-radius: 45px; border-bottom-right-radius: 30px; border-bottom-left-radius: 30px">
+    <div class="dropdown-content" style="background-color: #fff7e6; border-top-right-radius: 45px; border-bottom-right-radius: 30px; border-bottom-left-radius: 30px; width: 175px">
       <a style="border-top-right-radius: 100px" href="productos.php" target="_blank"><strong>Productos</strong></a>
       <a href="#" target="_blank"><strong>Proveedores</strong></a>
       <a href="lotes.php" target="_blank"><strong>Lotes</strong></a>
