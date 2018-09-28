@@ -5,7 +5,7 @@
 		<title>Agregar Nueva Deuda</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/nuevo_cliente.css">
+    <link rel="stylesheet" href="css/nueva_deuda.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
