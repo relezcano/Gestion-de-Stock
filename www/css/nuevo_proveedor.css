@@ -2,7 +2,7 @@
 /* CSS Document */
 
 body {
-  background-image: url("../img/fondo2.jpg");
+  background-image: url("../img/fondo4.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -42,7 +42,6 @@ label {
   font-style: italic;
 }
 
-
 p {
   color: white;
   text-align: justify;
@@ -55,7 +54,7 @@ p {
 .formulario {
   padding-top: 15px;
   padding-bottom: 15px;
-  width: 720px;
+  width: 820px;
   margin-top: 0px;
   margin-right: auto;
   margin-bottom: 0px;
