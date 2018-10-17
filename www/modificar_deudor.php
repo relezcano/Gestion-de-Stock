@@ -15,7 +15,7 @@
     ?>
 
     <script>
-      window.location.replace('deudas.php');  // redireccionar a otra pagina.
+      window.location.replace('deudores.php');  // redireccionar a otra pagina.
     </script>
 
     <?

@@ -14,11 +14,11 @@
 
 		<div class="container-fluid" style="margin-top: 25px">
       <div class="row">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-6" style="margin-left: 7px">
+        <div class="col-md-1"></div>
+        <div class="col-md-6" style="margin-left: 7px">
           <h1 style="font-size: 35px; color: #ffffff; padding-left: 65px"><strong>Agregar Nuevo Lote</strong></h1>
         </div>
-        <div class="col-sm-5"></div>
+        <div class="col-md-5"></div>
       </div>
 
 			<div class="formulario">
@@ -26,91 +26,91 @@
       <form class="alta" action="nuevo_lote.php" method="post" style="margin-left: 50px">
 
         <div class="row">
-          <div class="col-sm-1"></div>
-          <div class="col-sm-3">
+          <div class="col-md-1"></div>
+          <div class="col-md-3">
             <label style="margin-top: 5px">Cantidad</label>
           </div>
-          <div class="col-sm-3">
+          <div class="col-md-3">
             <input class="form-control" style="width: 136px; margin-bottom: 5px" type="text" name="cant" placeholder="Cantidad de Lotes">
           </div>
-          <div class="col-sm-5"></div>
+          <div class="col-md-5"></div>
         </div>
 
         <div class="row">
-          <div class="col-sm-1"></div>
-          <div class="col-sm-3">
+          <div class="col-md-1"></div>
+          <div class="col-md-3">
             <label style="margin-top: 5px">Precio Compra</label>
           </div>
-          <div class="col-sm-3">
+          <div class="col-md-3">
             <input class="form-control" style="width: 136px; margin-bottom: 5px" type="text" name="price_C" placeholder="$">
           </div>
-          <div class="col-sm-5"></div>
+          <div class="col-md-5"></div>
         </div>
 
         <div class="row">
-          <div class="col-sm-1"></div>
-          <div class="col-sm-3">
+          <div class="col-md-1"></div>
+          <div class="col-md-3">
             <label style="margin-top: 5px">Fecha Alta</label>
           </div>
-          <div class="col-sm-3">
+          <div class="col-md-3">
             <input class="form-control" style="width: 160px; margin-bottom: 5px" type="date" name="date_Alt">
           </div>
-          <div class="col-sm-5"></div>
+          <div class="col-md-5"></div>
         </div>
 
         <div class="row">
-          <div class="col-sm-1"></div>
-          <div class="col-sm-3">
+          <div class="col-md-1"></div>
+          <div class="col-md-3">
             <label style="margin-top: 5px">Vencimiento</label>
           </div>
-          <div class="col-sm-3">
+          <div class="col-md-3">
             <input class="form-control" style="width: 160px; margin-bottom: 5px" type="date" name="date_Ven">
           </div>
-          <div class="col-sm-5"></div>
+          <div class="col-md-5"></div>
         </div>
 
         <div class="row">
-          <div class="col-sm-1"></div>
-          <div class="col-sm-3">
+          <div class="col-md-1"></div>
+          <div class="col-md-3">
             <label style="margin-top: 5px">N° Comprobante</label>
           </div>
-          <div class="col-sm-3">
+          <div class="col-md-3">
             <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="n_Comp" placeholder="N° de Comprobante">
           </div>
-          <div class="col-sm-5"></div>
+          <div class="col-md-5"></div>
         </div>
 
         <div class="row">
-          <div class="col-sm-1"></div>
-          <div class="col-sm-3">
+          <div class="col-md-1"></div>
+          <div class="col-md-3">
             <label style="margin-top: 5px">ID Producto</label>
           </div>
-          <div class="col-sm-3">
+          <div class="col-md-3">
             <input class="form-control" style="width: 100px; margin-bottom: 5px" type="text" name="id_Prod1" placeholder="ID Producto">
           </div>
-          <div class="col-sm-5"></div>
+          <div class="col-md-5"></div>
         </div>
 
         <div class="row">
-          <div class="col-sm-1"></div>
-          <div class="col-sm-3">
+          <div class="col-md-1"></div>
+          <div class="col-md-3">
             <label style="margin-top: 5px">ID Proveedor</label>
           </div>
-          <div class="col-sm-3">
+          <div class="col-md-3">
             <input class="form-control" style="width: 100px; margin-bottom: 5px" type="text" name="id_Prov1" placeholder="ID Proveedor">
           </div>
-          <div class="col-sm-5"></div>
+          <div class="col-md-5"></div>
         </div>
 
         <div class="row">
-          <div class="col-sm-1"></div>
-          <div class="col-sm-3">
+          <div class="col-md-1"></div>
+          <div class="col-md-3">
             <label style="margin-top: 5px">Observaciones</label>
           </div>
-          <div class="col-sm-3">
+          <div class="col-md-3">
             <textarea class="form-control" name="obs_L" rows="8" cols="60" style="width: 380px" placeholder="Escriba observaciones acerca del lote..."></textarea>
           </div>
-          <div class="col-sm-5"></div>
+          <div class="col-md-5"></div>
         </div>
 
         <br>

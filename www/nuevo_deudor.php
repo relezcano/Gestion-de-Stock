@@ -23,7 +23,7 @@
 
 			<div class="formulario">
 
-      <form class="alta" action="nueva_deuda.php" method="post" style="margin-left: 50px">
+      <form class="alta" action="nuevo_deudor.php" method="post" style="margin-left: 50px">
 
 				<div class="row">
 					<div class="col-md-2"></div>
@@ -66,7 +66,7 @@
 						<button style="font-family: verdana; font-weight: bolder" type="submit" name="guardar" class="btn btn-success btn-md"><span class="glyphicon glyphicon-floppy-disk"></span><strong> GUARDAR</strong></button>
 					</div>
 					<div class="col-md-3">
-						<button style="margin-left: 30px; font-family: verdana; font-weight: bolder" type="button" name="cancelar" onclick="location.href = 'deudas.php';" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-chevron-left"></span><strong> VOLVER</strong></button>
+						<button style="margin-left: 30px; font-family: verdana; font-weight: bolder" type="button" name="cancelar" onclick="location.href = 'deudores.php';" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-chevron-left"></span><strong> VOLVER</strong></button>
 					</div>
 						<div class="col-md-3"></div>
 					</div>
@@ -93,7 +93,7 @@
 			echo "Deuda guardada exitosamente!!!";
 			?>
 			<script>
-        window.location.replace('deudas.php');  // redireccionar a otra pagina.
+        window.location.replace('deudores.php');  // redireccionar a otra pagina.
       </script><?
 		}
 	}

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
-    <title>Deudas</title>
+    <title>Proveedores</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-theme.css">
-    <link rel="stylesheet" href="css/clientes.css">
+    <link rel="stylesheet" href="css/proveedores.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -21,24 +21,24 @@
 
       <div class="row">
         <div class="col-md-2">
-          <button type="button" name="agregar" class="btn btn-primary" onclick="location.href = 'nueva_deuda.php';"><strong><span class="glyphicon glyphicon-plus"></span> Nueva Deuda</strong></button>
+          <button type="button" name="agregar" class="btn btn-primary" onclick="location.href = 'nuevo_proveedor.php';"><strong><span class="glyphicon glyphicon-plus"></span> Nuevo Proveedor</strong></button>
         </div>
 
-        <form class="btnmodificar" action="deudas.php" method="post">
+        <form class="btnmodificar" action="proveedores.php" method="post">
         <div class="col-md-2">
-          <button type="submit" name="modificar" class="btn btn-warning"><strong><span class="glyphicon glyphicon-pencil"></span> Modificar Deuda</strong></button>
+          <button type="submit" name="modificar" class="btn btn-warning" style="margin-left: 5px"><strong><span class="glyphicon glyphicon-pencil"></span> Modificar Proveedor</strong></button>
         </div>
           <div class="col-md-1">
-            <input class="form-control" type="text" name="select" placeholder="ID">
+            <input class="form-control" type="text" name="select" placeholder="ID" style="margin-left: 25px">
           </div>
         </form>
 
-        <form class="eliminar" action="deudas.php" method="post">
+        <form class="eliminar" action="proveedores.php" method="post">
           <div class="col-md-2">
-            <button type="submit" name="eliminar" class="btn btn-danger" style="margin-left: 5px"><strong><span class="glyphicon glyphicon-trash"></span> Eliminar Deuda</strong></button>
+            <button type="submit" name="eliminar" class="btn btn-danger" style="margin-left: 3px"><strong><span class="glyphicon glyphicon-trash"></span> Eliminar Proveedor</strong></button>
           </div>
           <div class="col-md-1">
-            <input class="form-control" type="text" name="select2" placeholder="ID">
+            <input class="form-control" type="text" name="select2" placeholder="ID" style="margin-left: 15px">
           </div>
         </form>
 
@@ -53,7 +53,7 @@
 
           require 'include/conexion.php';
 
-          $sql = ("SELECT * FROM Deuda ORDER BY id_D ASC");
+          $sql = ("SELECT * FROM Proveedor ORDER BY id_Prov ASC");
           $ret = $db->query($sql);
 
           ?>
@@ -63,18 +63,18 @@
               <thead class="thead-dark">
                 <tr>
                   <th scope="col">ID</th>
-                  <th scope="col">Monto</th>
-                  <th scope="col">ID Venta</th>
-                  <th scope="col">ID Cliente</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Concurrencia</th>
+                  <th scope="col">Observaciones</th>
                 </tr>
               </thead>
               <tbody id="myTable">
                 <tr>
                   <? while($row = $ret->fetchArray(SQLITE3_ASSOC)){?>
-                    <td><?echo $row['id_D'];?></td>
-                    <td><?echo $row['monto'];?></td>
-                    <td><?echo $row['id_V'];?></td>
-                    <td><?echo $row['id_C'];?></td>
+                    <td><?echo $row['id_Prov'];?></td>
+                    <td><?echo $row['name_Prov'];?></td>
+                    <td><?echo $row['conc'];?></td>
+                    <td><?echo $row['obs_Prov'];?></td>
                 </tr>
                 <?}?>
               </tbody>
@@ -95,29 +95,28 @@ if (isset($_POST['modificar'])) {
 
     $idSel = $_POST['select'];
 
-    $sql = ("SELECT * FROM Deuda WHERE id_D = '$idSel'");
+    $sql = ("SELECT * FROM Proveedor WHERE id_Prov = '$idSel'");
     $ret = $db->query($sql);
 
     while($row = $ret->fetchArray(SQLITE3_ASSOC)){
-      $id = $row['id_D'];
-      $monto = $row['monto'];
-      $idV = $row['id_V'];
-      $idC = $row['id_C'];
-
+      $id = $row['id_Prov'];
+      $name = $row['name_Prov'];
+      $conc = $row['conc'];
+      $obs = $row['obs_Prov'];
 ?>
 
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-6">
-      <h1 style="font-size: 37px; color: #ffffff; padding-left: 42px"><strong>Modificar Deuda</strong></h1>
+      <h1 style="font-size: 37px; color: #ffffff; padding-left: 42px"><strong>Modificar Cliente</strong></h1>
     </div>
     <div class="col-md-5"></div>
   </div>
 
   <div class="formulario">
 
-    <form class="modificar" action="modificar_deuda.php" method="post">
+    <form class="modificar" action="modificar_proveedor.php" method="post">
 
     <!-- CAMPO CON ID HIDDEN -->
     <input type="hidden" name="id" value="<?echo $id;?>">
@@ -125,21 +124,10 @@ if (isset($_POST['modificar'])) {
     <div class="row">
       <div class="col-md-1"></div>
       <div class="col-md-3">
-        <label style="margin-top: 5px">Monto</label>
+        <label style="margin-top: 5px">Nombre</label>
       </div>
       <div class="col-md-3">
-        <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="monto" value="<?echo $monto;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">ID Venta</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="id_V" value="<?echo $idV;?>">
+        <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="name_Prov" value="<?echo $name;?>">
       </div>
       <div class="col-md-5"></div>
     </div>
@@ -147,10 +135,21 @@ if (isset($_POST['modificar'])) {
     <div class="row">
       <div class="col-md-1"></div>
       <div class="col-md-3">
-        <label style="margin-top: 5px">ID Cliente</label>
+        <label style="margin-top: 5px">Concurrencia</label>
       </div>
       <div class="col-md-3">
-        <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="id_C" value="<?echo $idC;?>">
+        <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="conc" value="<?echo $conc;?>">
+      </div>
+      <div class="col-md-5"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-3">
+        <label style="margin-top: 5px">Observaciones</label>
+      </div>
+      <div class="col-md-3">
+        <textarea class="form-control" style="width: 380px" name="obs_Prov" rows="8" cols="60"><?echo $obs;?></textarea>
       </div>
       <div class="col-md-5"></div>
     </div>
@@ -163,7 +162,7 @@ if (isset($_POST['modificar'])) {
       <button style="font-family: verdana; font-weight: bolder" type="submit" name="guardar" class="btn btn-success btn-md"><span class="glyphicon glyphicon-floppy-disk"></span><strong> GUARDAR</strong></button>
     </div>
     <div class="col-md-3">
-      <button style="margin-left: 30px; font-family: verdana; font-weight: bolder" type="button" name="cancelar" onclick="location.href = 'deudas.php';" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-remove"></span><strong> CANCELAR</strong></button>
+      <button style="margin-left: 30px; font-family: verdana; font-weight: bolder" type="button" name="cancelar" onclick="location.href = 'proveedores.php';" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-remove"></span><strong> CANCELAR</strong></button>
     </div>
       <div class="col-md-3"></div>
     </div>
@@ -185,12 +184,12 @@ if (isset($_POST['modificar'])) {
     if (isset($_POST['select2'])) {
 
       $idSelDel = $_POST['select2'];
-      $sql = ("DELETE FROM Deuda WHERE id_D = $idSelDel");
+      $sql = ("DELETE FROM Proveedor WHERE id_Prov = $idSelDel");
       $ret = $db->query($sql);
-      echo "Deuda eliminado exitosamente!!!";
+      echo "Proveedor eliminado exitosamente!!!";
 
       ?><script>
-        window.location.replace('deudas.php');  // redireccionar a esta página.
+        window.location.replace('proveedores.php');  // redireccionar a esta página.
       </script><?
 
     } else {
