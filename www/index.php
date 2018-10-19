@@ -12,20 +12,20 @@
   </head>
   <body>
 
-    <div class="container-fluid" style="margin-top: 75px; margin-right: 100px">
+    <div class="container-fluid" style="margin-top: 35px; margin-right: 100px">
       <div class="row">
-        <div class="col-sm-12" style="padding-left: 515px">
-          <img src="img/scs1.png"  height="120" alt="logo">
+        <div class="col-sm-12" style="padding-left: 438px">
+          <img src="img/elephant2.png"  height="350" alt="logo">
         </div>
       </div>
       <br>
-      <div class="row">
-        <div class="col-sm-12" style="padding-left: 345px; padding-top: 5px">
-          <img src="img/slogan1.png"  height="50" alt="logo">
-        </div>
+    <div class="row">
+      <div class="col-sm-12" style="margin-top: -35px; padding-left: 350px">
+        <img src="img/logo_elephant.png"  height="150" alt="logo">
       </div>
+    </div>
       <br><br><br><br>
-      <form class="login" action="index.php" method="post">
+      <form class="login" style="margin-top: -60px" action="index.php" method="post">
       <div class="row">
         <div class="col-sm-3"></div>
         <div class="col-sm-2">
@@ -47,7 +47,7 @@
       <br>
       <div class="row">
         <div class="col-sm-5"></div>
-        <div class="col-sm-3" style="padding-left: 80px">
+        <div class="col-sm-3" style="padding-left: 95px">
           <button style="font-family: verdana; font-weight: bolder" type="submit" name="ingresar" class="btn btn-warning btn-md"><span class="glyphicon glyphicon-log-in"></span><strong> INGRESAR</strong></button>
         </div>
         <div class="col-sm-4"></div>
