@@ -50,6 +50,33 @@
       </form>
       </div>
 
+      <!-- -------------- PAGO DEL CLIENTE ---------------- -->
+
+      <br>
+
+      <form class="pago_deuda" action="pago_deuda.php" method="post">
+        <div class="row" style="border: solid 1px; border-color: lime; background-color: grey; margin-top: 0px; margin-right: auto; margin-bottom: 0px; margin-left: auto; padding-top: 5px; padding-bottom: 5px;">
+          <div class="col-md-2"></div>
+          <div class="col-md-2">
+            <label style="padding-left: 20px; text-align: right; margin-top: 2px">ID Cliente:</label>
+          </div>
+          <div class="col-md-1">
+            <input class="form-control" type="text" name="id_C" placeholder="ID">
+          </div>
+          <div class="col-md-3">
+            <label style="padding-left: 70px; text-align: right; margin-top: 2px">Valor a Pagar:</label>
+          </div>
+          <div class="col-md-2">
+            <input class="form-control" type="text" name="valor" placeholder="$">
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-success" type="submit" name="pagar"><span class="glyphicon glyphicon-usd"></span><strong> Pagar</strong></button>
+          </div>
+        </div>
+      </form>
+
+
+<!-- -------------- TABLA DE DEUDORES -------------- -->
 
     <div class="row">
       <div class="col-lg-12">
@@ -58,7 +85,7 @@
           require 'include/conexion.php';
 
 
-          $sql = ("SELECT * FROM Deuda ORDER BY id_D ASC");
+          $sql = ("SELECT * FROM Deuda WHERE monto > 0 ORDER BY id_D ASC");
           $ret = $db->query($sql);
 
           ?>
@@ -68,8 +95,9 @@
               <thead class="thead-dark">
                 <tr>
                   <th scope="col">ID Deuda</th>
+                  <th scope="col">ID Cliente</th>
                   <th scope="col">Nombre Cliente</th>
-                  <th scope="col">Monto</th>
+                  <th scope="col">$ Monto</th>
                   <th scope="col">ID Venta</th>
                 </tr>
               </thead>
@@ -77,6 +105,7 @@
                 <tr>
                   <? while($row = $ret->fetchArray(SQLITE3_ASSOC)){
                       ?><td><?echo $row['id_D'];?></td><?
+                      ?><td><?echo $row['id_C'];?></td><?
                       $idC = $row['id_C'];
                       $sql1 = ("SELECT * FROM Cliente WHERE id_C = '$idC'");
                       $res = $db->query($sql1);
@@ -94,6 +123,11 @@
         </div>
       </div>
 
+
+
+
+
+<!-- ---------------- TABLA DE TOTALES ---------------- -->
 
 <?
       $consulta = "SELECT SUM(monto) AS Total FROM Deuda";
@@ -122,6 +156,9 @@
                   <?
 
                     if(isset($_POST['buscar'])){
+                      if ($_POST['filtro'] == ""){
+
+                  		} else {
 
                       $filtro = $_POST['filtro'];
 
@@ -137,8 +174,8 @@
                         $resultado=$db->query($consulta);
 
                         while ($fila = $resultado->fetchArray(SQLITE3_ASSOC)){; //devuelve un array asociativo con el nombre del campo
-                          $totalCliente = $fila['TotalCliente']; //valor que se acaba de calcular en la consulta
-                          ?><td style="text-align: right; background-color: #99ffcc; color: #000000"><strong>
+                          $totalCliente = $fila['TotalCliente']; //valor que se acaba de calcular en la consulta?>
+                          <td style="text-align: right; background-color: #99ffcc; color: #000000"><strong>
                             <?echo 'El cliente ';
                               ?><span style="color: #ff6600; font-size: 20px"><em><? echo $nombre. ' '. $apellido ?></em></span><?
                                 echo ' '. 'debe un total de: ';
@@ -147,7 +184,7 @@
                       </tr>
               </tbody>
             </table>
-            <?}?>
+            <?}}?>
           </div>
         </div>
       </div>
@@ -250,6 +287,7 @@
     <!-------------------------- Eliminar Deudor -------------------------- -->
 
     <?
+
       if(isset($_POST['eliminar'])){
         if (isset($_POST['select2'])) {
 

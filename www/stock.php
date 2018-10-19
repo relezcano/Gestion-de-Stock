@@ -20,7 +20,7 @@
     <div class="container" style="margin-top: 50px">
       <div class="row">
         <div class="col-md-6">
-          <input class="form-control" id="myInput" type="text" name="filtro" placeholder="Filtrar Por Nombre de Cliente...">
+          <input class="form-control" id="myInput" type="text" name="filtro" placeholder="Filtrar Por Nombre de Producto, Marca, Tipo...">
         </div>
         <div class="col-md-6"></div>
       </div>
