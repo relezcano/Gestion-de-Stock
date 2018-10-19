@@ -10,8 +10,8 @@
         "log_file": "debug.log"
     },
     "main_window": {
-        "title": "SCS - Software de Control de Stock",
-        "icon": "",
+        "title": "Elephant - Stock Control System",
+        "icon": "www/img/elephant_icon.ico",
         "default_size": [1280, 1024],
         "minimum_size": [800, 600],
         "maximum_size": [0, 0],
