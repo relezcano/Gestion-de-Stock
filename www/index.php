@@ -14,13 +14,13 @@
 
     <div class="container-fluid" style="margin-top: 35px; margin-right: 100px">
       <div class="row">
-        <div class="col-sm-12" style="padding-left: 438px">
+        <div class="col-sm-12" style="padding-left: 448px">
           <img src="img/elephant2.png"  height="350" alt="logo">
         </div>
       </div>
       <br>
     <div class="row">
-      <div class="col-sm-12" style="margin-top: -35px; padding-left: 350px">
+      <div class="col-sm-12" style="margin-top: -35px; padding-left: 356px">
         <img src="img/logo_elephant.png"  height="150" alt="logo">
       </div>
     </div>
@@ -47,7 +47,7 @@
       <br>
       <div class="row">
         <div class="col-sm-5"></div>
-        <div class="col-sm-3" style="padding-left: 95px">
+        <div class="col-sm-3" style="padding-left: 100px">
           <button style="font-family: verdana; font-weight: bolder" type="submit" name="ingresar" class="btn btn-warning btn-md"><span class="glyphicon glyphicon-log-in"></span><strong> INGRESAR</strong></button>
         </div>
         <div class="col-sm-4"></div>
