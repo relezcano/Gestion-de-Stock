@@ -2,6 +2,7 @@
 <html lang="es" dir="ltr">
   <head>
     <title>Deudores</title>
+    <link rel="shortcut icon" href="img/elephant_icon.ico" type="image/x-icon">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.css">
@@ -16,180 +17,270 @@
   </head>
   <body>
 
-    <div class="container" style="margin-top: 50px">
+<? require 'include/conexion.php'; ?>
+
+<!-- -------------------------------- BARRA DE BUSQUEDA Y TOTAL DE DEUDAS --------------------------------- -->
+
+    <div class="container" style="margin-top: 5px">
       <div class="row">
-        <div class="col-md-2">
-          <button type="button" name="agregar" class="btn btn-primary" onclick="location.href = 'nuevo_deudor.php';"><strong><span class="glyphicon glyphicon-plus"></span> Nuevo Deudor</strong></button>
-        </div>
-
-        <form class="btnmodificar" action="deudores.php" method="post">
-        <div class="col-md-2">
-          <button type="submit" name="modificar" class="btn btn-warning"><strong><span class="glyphicon glyphicon-pencil"></span> Modificar Deuda</strong></button>
-        </div>
-          <div class="col-md-1">
-            <input class="form-control" type="text" name="select" placeholder="ID">
-          </div>
-        </form>
-
-        <form class="eliminar" action="deudores.php" method="post">
-          <div class="col-md-2">
-            <button type="submit" name="eliminar" class="btn btn-danger" style="margin-left: 5px"><strong><span class="glyphicon glyphicon-trash"></span> Eliminar Deuda</strong></button>
-          </div>
-          <div class="col-md-1">
-            <input class="form-control" type="text" name="select2" placeholder="ID">
-          </div>
-        </form>
-
         <form class="buscar" action="deudores.php" method="post">
-        <div class="col-md-3">
-          <input style="margin-left: 20px" class="form-control" id="myInput" type="text" name="filtro" placeholder="Filtrar Por Nombre y Apellido">
+        <div class="col-md-5"  style="padding-top: 50px">
+          <input style="margin-left: 20px" class="form-control" type="text" name="filtro" placeholder="Busque por DNI o presione sólo ''Buscar'' para ver todo">
         </div>
-        <div class="col-md-1">
-          <button class="btn-xs btn-info" style="border-radius: 10px; font-size: 12px" type="submit" name="buscar"><span class="glyphicon glyphicon-search"></span> <strong> Ver Total</strong></button>
+        <div class="col-md-2"  style="padding-top: 50px">
+          <button class="btn btn-info" style="border-radius: 10px; font-size: 12px; padding: 8px; font-size: 14px" type="submit" name="buscar"><span class="glyphicon glyphicon-search"></span> <strong> Buscar</strong></button>
         </div>
-      </form>
-      </div>
+        </form>
+        <div class="col-md-5">
+          <div class="titulo" style="margin-left: 50px">
+            <h4 style="text-align: center"><strong>TOTAL DE TODAS LAS DEUDAS</strong></h4>
+          </div>
 
-      <!-- -------------- PAGO DEL CLIENTE ---------------- -->
+          <?
+                $consulta = "SELECT SUM(monto) AS Total FROM Deuda WHERE monto > 0";
+                $resultado=$db->query($consulta);
+                while ($fila = $resultado->fetchArray(SQLITE3_ASSOC)){; //devuelve un array asociativo con el nombre del campo
+
+                $Total = $fila['Total']; //valor que se acaba de calcular en la consulta
+          ?>
+
+          <div class="valor_total" style="margin-right: 4px">
+            <h4 style="font-size: 26px; color: #cc0000"><strong><?echo '$ ' . $Total;}?></strong></h4>
+          </div>
+        </div>
+      </div>
 
       <br>
 
-      <form class="pago_deuda" action="pago_deuda.php" method="post">
-        <div class="row" style="border: solid 1px; border-color: lime; background-color: grey; margin-top: 0px; margin-right: auto; margin-bottom: 0px; margin-left: auto; padding-top: 5px; padding-bottom: 5px;">
-          <div class="col-md-2"></div>
-          <div class="col-md-2">
-            <label style="padding-left: 20px; text-align: right; margin-top: 2px">ID Cliente:</label>
-          </div>
-          <div class="col-md-1">
-            <input class="form-control" type="text" name="id_C" placeholder="ID">
-          </div>
-          <div class="col-md-3">
-            <label style="padding-left: 70px; text-align: right; margin-top: 2px">Valor a Pagar:</label>
-          </div>
-          <div class="col-md-2">
-            <input class="form-control" type="text" name="valor" placeholder="$">
-          </div>
-          <div class="col-md-2">
-            <button class="btn btn-success" type="submit" name="pagar"><span class="glyphicon glyphicon-usd"></span><strong> Pagar</strong></button>
-          </div>
-        </div>
-      </form>
+          <div class="container">
 
-
-<!-- -------------- TABLA DE DEUDORES -------------- -->
-
-    <div class="row">
-      <div class="col-lg-12">
-        <?
-
-          require 'include/conexion.php';
-
-
-          $sql = ("SELECT * FROM Deuda WHERE monto > 0 ORDER BY id_D ASC");
-          $ret = $db->query($sql);
-
-          ?>
-          <div class="tabla">
-            <div class="table-responsive">
-            <table id="tabla" class="table table-bordered table-striped">
-              <thead class="thead-dark">
-                <tr>
-                  <th scope="col">ID Deuda</th>
-                  <th scope="col">ID Cliente</th>
-                  <th scope="col">Nombre Cliente</th>
-                  <th scope="col">$ Monto</th>
-                  <th scope="col">ID Venta</th>
-                </tr>
-              </thead>
-              <tbody id="myTable">
-                <tr>
-                  <? while($row = $ret->fetchArray(SQLITE3_ASSOC)){
-                      ?><td><?echo $row['id_D'];?></td><?
-                      ?><td><?echo $row['id_C'];?></td><?
-                      $idC = $row['id_C'];
-                      $sql1 = ("SELECT * FROM Cliente WHERE id_C = '$idC'");
-                      $res = $db->query($sql1);
-                      while($row1 = $res->fetchArray(SQLITE3_ASSOC)){
-                    ?>
-                    <td><?echo $row1['name_C']," ", $row1['surname_C'];}?></td>
-                    <td><?echo $row['monto'];?></td>
-                    <td><?echo $row['id_V'];?></td>
-                </tr>
-                <?}?>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        </div>
-      </div>
-
-
-
-
-
-<!-- ---------------- TABLA DE TOTALES ---------------- -->
-
-<?
-      $consulta = "SELECT SUM(monto) AS Total FROM Deuda";
-      $resultado=$db->query($consulta);
-      while ($fila = $resultado->fetchArray(SQLITE3_ASSOC)){; //devuelve un array asociativo con el nombre del campo
-
-      $Total = $fila['Total']; //valor que se acaba de calcular en la consulta
-?>
-
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="tabla">
-          <div class="table-responsive">
-            <table id="tabla" class="table table-bordered table-striped">
-              <thead class="thead-dark">
-                <tr>
-                  <th style="text-align: right; font-size: 18px; background-color: grey" scope="col"><strong><em><span style="color: #ffc299">TOTAL DE LAS DEUDAS</span></em></strong></th>
-
-                  <th style="text-align: right; color: #99ffcc; font-size: 18px; background-color: grey" scope="col"><strong><em>DEUDAS DEL CLIENTE</em></strong></th>
-                </tr>
-              </thead>
-              <tbody id="myTableTotal">
-                <tr>
-                  <td style="text-align: right; background-color: #ffc299; font-size: 20px"><strong><?echo '$', $Total;}?></strong></td>
+                  <!-- ----------------------------- TABLAS DEUDORES Y CLIENTES SELECCIONADOS ------------------------ -->
 
                   <?
+                  if (isset($_POST['buscar'])) {
+                    if ($_POST['filtro'] == ""){
+                    ?>
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <?
 
-                    if(isset($_POST['buscar'])){
-                      if ($_POST['filtro'] == ""){
+                          $sql = ("SELECT * FROM Deuda WHERE monto > 0 ORDER BY id_D ASC");
+                          $ret = $db->query($sql);
 
-                  		} else {
+                          ?>
+                          <div class="tabla">
+                            <div class="table-responsive">
+                            <table id="tabla" class="table table-bordered table-striped">
+                              <thead class="thead-dark">
+                                <tr>
 
-                      $filtro = $_POST['filtro'];
+                                  <th style="text-align: center" scope="col">DNI Cliente</th>
+                                  <th style="text-align: center" scope="col">Nombre Cliente</th>
+                                  <th style="text-align: center" scope="col">$ Monto</th>
+                                  <th style="text-align: center" scope="col">ID Venta</th>
+                                  <th style="text-align: center" scope="col">Acciones</th>
 
-                      $query = "SELECT * FROM Cliente WHERE (name_C || ' ' || surname_C) LIKE '%$filtro%'";
-                      $resQuery = $db->query($query);
+                                </tr>
+                              </thead>
+                              <tbody id="myTable">
+                                <tr>
 
-                      while($rowID = $resQuery->fetchArray(SQLITE3_ASSOC)){
-                        $id_C = $rowID['id_C'];
-                        $nombre = $rowID['name_C'];
-                        $apellido = $rowID['surname_C'];
+                                  <? while($row = $ret->fetchArray(SQLITE3_ASSOC)){
+                                      $idC = $row['id_C'];
+                                      $idV = $row['id_V'];
+                                      $sql1 = ("SELECT * FROM Cliente WHERE id_C = '$idC'");
+                                      $res = $db->query($sql1);
+                                      while($row1 = $res->fetchArray(SQLITE3_ASSOC)){
+                                    ?>
+                                      <td><?echo $row1['dni'];?></td>
+                                      <td><?echo $row1['name_C']," ", $row1['surname_C'];}?></td>
+                                      <td><?echo $row['monto'];?></td>
+                                      <td><?echo $row['id_V'];?></td>
+                                      <td>
 
-                        $consulta = "SELECT SUM(monto) AS TotalCliente FROM Deuda WHERE id_C = '$id_C'";
-                        $resultado=$db->query($consulta);
+                                      <form class="btnmodificar" action="deudores.php" method="post">
+                                        <div class="col-md-1">
+                                          <input type="hidden" class="form-control" type="text" name="select" value="<?echo $idC; ?>">
+                                        </div>
 
-                        while ($fila = $resultado->fetchArray(SQLITE3_ASSOC)){; //devuelve un array asociativo con el nombre del campo
-                          $totalCliente = $fila['TotalCliente']; //valor que se acaba de calcular en la consulta?>
-                          <td style="text-align: right; background-color: #99ffcc; color: #000000"><strong>
-                            <?echo 'El cliente ';
-                              ?><span style="color: #ff6600; font-size: 20px"><em><? echo $nombre. ' '. $apellido ?></em></span><?
-                                echo ' '. 'debe un total de: ';
-                              ?><span style="color: #ff6600; font-size: 20px"><? echo '$', $totalCliente;}}?></span></strong>
-                          </td>
-                      </tr>
-              </tbody>
-            </table>
-            <?}}?>
-          </div>
-        </div>
-      </div>
+                                        <div class="col-md-4">
+                                          <button type="submit" name="modificar" class="btn btn-warning"><strong><span class="glyphicon glyphicon-pencil"></span></strong></button>
+                                        </div>
+
+                                        <div class="col-md-1">
+                                          <input type="hidden" class="form-control" type="text" name="idv" value="<?echo $idV; ?>">
+                                        </div>
+                                      </form>
+
+                                      <form class="btneliminar" action="deudores.php" method="post">
+
+                                        <div class="col-md-4">
+                                          <button type="submit" name="eliminar" class="btn btn-danger" style="margin-left: 5px"><strong><span class="glyphicon glyphicon-trash"></span></strong></button>
+                                        </div>
+
+                                        <div class="col-md-1">
+                                          <input type="hidden" class="form-control" type="text" name="select2" value="<?echo $idC; ?>">
+                                        </div>
+
+                                        <div class="col-md-1">
+                                          <input type="hidden" class="form-control" type="text" name="idv" value="<?echo $idV; ?>">
+                                        </div>
+                                      </form>
+
+                                      </td>
+                                </tr>
+                                <?}?>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <?
+                  } else {
+
+                  // mostrar tabla con datos solo del cliente seleccionado
+
+                  $filtro = $_POST['filtro'];
+
+              ?>
+
+              <!-- ------------------------ PAGO DEL CLIENTE -------------------------- -->
+                <br>
+                  <form class="pago_deuda" action="pago_deuda.php" method="post">
+                    <div class="row" style="border: solid 2px; border-color: lime; background-color: grey; margin-top: 0px; margin-right: auto; margin-bottom: 0px; margin-left: auto; padding-top: 10px; padding-bottom: 10px;">
+                      <div class="col-md-1">
+                        <input type="hidden" class="form-control" type="text" name="dni" value="<? echo $filtro;?>">
+                      </div>
+                      <div class="col-md-4">
+                        <label style="padding-left: 130px; text-align: right; margin-top: 2px">Valor a Pagar:</label>
+                      </div>
+                      <div class="col-md-2">
+                        <input class="form-control" type="text" name="valor" placeholder="$">
+                      </div>
+                      <div class="col-md-2">
+                        <button class="btn btn-success" type="submit" name="pagar"><span class="glyphicon glyphicon-usd"></span><strong> Pagar</strong></button>
+                      </div>
+                      <div class="col-md-3"></div>
+                    </div>
+                  </form>
+                  <br>
+              <?
+                  $query = "SELECT * FROM Cliente WHERE dni = '$filtro'";
+                  $resQuery = $db->query($query);
+
+                  while($rowID = $resQuery->fetchArray(SQLITE3_ASSOC)){
+                    $id_C = $rowID['id_C'];
+                    $nombre = $rowID['name_C'];
+                    $apellido = $rowID['surname_C'];
+                    $dni = $rowID['dni'];
+
+                    if($dni != $filtro){
+
+                    } else {
+                    ?>
+                    <div class="row">
+                      <div class="col-md-12">
+
+                        <?
+                          $sql = ("SELECT * FROM Deuda WHERE monto > 0 AND id_C = '$id_C' ORDER BY id_D ASC");
+                          $ret = $db->query($sql);
+
+                        ?>
+                          <div class="tabla">
+                            <div class="table-responsive">
+                            <table id="tabla" class="table table-bordered table-striped">
+                              <thead class="thead-dark">
+                                <tr>
+
+                                  <th style="text-align: center" scope="col">DNI Cliente</th>
+                                  <th style="text-align: center" scope="col">Nombre Cliente</th>
+                                  <th style="text-align: center" scope="col">$ Monto</th>
+                                  <th style="text-align: center" scope="col">ID Venta</th>
+                                  <th style="text-align: center" scope="col">Acciones</th>
+
+                                </tr>
+                              </thead>
+                              <tbody id="myTable">
+                                <tr>
+
+                                  <? while($row = $ret->fetchArray(SQLITE3_ASSOC)){
+                                      $idV = $row['id_V'];
+                                    ?>
+                                      <td><?echo $rowID['dni'];?></td>
+                                      <td><?echo $rowID['name_C']," ", $rowID['surname_C'];?></td>
+                                      <td><?echo $row['monto'];?></td>
+                                      <td><?echo $row['id_V'];?></td>
+                                      <td>
+
+                                      <form class="btnmodificar" action="deudores.php" method="post">
+                                        <div class="col-md-1">
+                                          <input type="hidden" class="form-control" type="text" name="select" value="<?echo $id_C; ?>">
+                                        </div>
+
+                                        <div class="col-md-4">
+                                          <button type="submit" name="modificar" class="btn btn-warning"><strong><span class="glyphicon glyphicon-pencil"></span></strong></button>
+                                        </div>
+
+                                        <div class="col-md-1">
+                                          <input type="hidden" class="form-control" type="text" name="idv" value="<?echo $idV; ?>">
+                                        </div>
+
+                                      </form>
+
+                                      <form class="eliminar" action="deudores.php" method="post">
+                                        <div class="col-md-4">
+                                          <button type="submit" name="eliminar" class="btn btn-danger" style="margin-left: 5px"><strong><span class="glyphicon glyphicon-trash"></span></strong></button>
+                                        </div>
+                                        <div class="col-md-1">
+                                          <input type="hidden" class="form-control" type="text" name="select2" value="<?echo $idC; ?>">
+                                        </div>
+                                        <div class="col-md-1">
+                                          <input type="hidden" class="form-control" type="text" name="idv" value="<?echo $idV; ?>">
+                                        </div>
+                                      </form>
+
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                  <?}}?>
+                                </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+
+
+
+                    <?
+                    // SUMA TOTAL DEUDA DEL CLIENTE SELECCIONADO
+
+                    $consulta = "SELECT SUM(monto) AS TotalCliente FROM Deuda WHERE id_C = '$id_C'";
+                    $resultado=$db->query($consulta);
+
+                    while ($fila = $resultado->fetchArray(SQLITE3_ASSOC)){; //devuelve un array asociativo con el nombre del campo
+                      $totalCliente = $fila['TotalCliente']; //valor que se acaba de calcular en la consulta?>
+
+                      <div class="resultado">
+
+
+                      <h5 style="text-align: center; background-color: #99ffcc; color: #000000"><strong>
+
+                        <span style="font-size: 20px"><?echo 'El cliente ';
+                          ?><span style="color: #ff6600; font-size: 22px"><em><? echo $nombre. ' '. $apellido ?></em></span><?
+                          ?><span style="font-size: 20px"><?echo  ', ' . 'DNI: ';
+                          ?><span style="color: #ff6600; font-size: 22px"><em><? echo $dni;?></em></span><?
+                          ?><span style="font-size: 20px"><?echo ' '. 'debe un total de: ';
+                          ?><span style="color: #ff6600; font-size: 22px"><? echo '$', $totalCliente;}}?></span></strong>
+
+                      </h5>
+                      </div>
+        <?}}?>
     </div>
-  </div>
+
+
 
     <!---------------------------- Modificar Deuda ------------------------------ -->
 
@@ -200,8 +291,9 @@
 
 
         $idSel = $_POST['select'];
+        $idV = $_POST['idv'];
 
-        $sql = ("SELECT * FROM Deuda WHERE id_D = '$idSel'");
+        $sql = ("SELECT * FROM Deuda WHERE id_C = '$idSel' AND id_V = $idV");
         $ret = $db->query($sql);
 
         while($row = $ret->fetchArray(SQLITE3_ASSOC)){
@@ -214,10 +306,10 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-6">
-          <h1 style="font-size: 37px; color: #ffffff; padding-left: 46px"><strong>Modificar Deuda</strong></h1>
+        <div class="col-md-6" style="padding-left: 60px">
+          <h1 style="font-size: 37px; color: #ffffff; padding-left: 76px"><strong>Modificar Deuda</strong></h1>
         </div>
+        <div class="col-md-1"></div>
         <div class="col-md-5"></div>
       </div>
 
@@ -288,10 +380,12 @@
 
     <?
 
+    //  REVISAR ESTA PARTE DEL CODIGO
+
       if(isset($_POST['eliminar'])){
         if (isset($_POST['select2'])) {
 
-          $idSelDel = $_POST['select2'];
+          $dni = $_POST['select2'];
           $sql = ("DELETE FROM Deuda WHERE id_D = $idSelDel");
           $ret = $db->query($sql);
           echo "Deuda eliminada exitosamente!!!";
@@ -307,16 +401,6 @@
 
     ?>
 
-    <script>
-      $(document).ready(function(){
-        $("#myInput").on("keyup", function() {
-          var value = $(this).val().toLowerCase();
-          $("#myTable tr").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-          });
-        });
-      });
-    </script>
 
   </body>
 </html>

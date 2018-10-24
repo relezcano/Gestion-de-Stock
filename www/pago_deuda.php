@@ -3,40 +3,50 @@
 
   if (isset($_POST['pagar'])) {
 
-    $idC = $_POST['id_C'];
-    $montoPago = $_POST['valor'];
+    if ($_POST['dni'] == "") {
+      // no hace nada...
+    } else {
 
-    $sql = ("SELECT * FROM Deuda WHERE id_C = '$idC'");
-    $res = $db->query($sql);
-    while($row = $res->fetchArray(SQLITE3_ASSOC)){
-      $id_deuda = $row['id_D'];
-      $valorDeuda = $row['monto'];
+      $dni = $_POST['dni'];
+      $montoPago = $_POST['valor'];
 
-    //  echo "Usted esta en la deuda ". $id_deuda."<br>";
+      $cons = ("SELECT * FROM Cliente WHERE dni = '$dni'");
+      $result = $db->query($cons);
+      while($rows = $result->fetchArray(SQLITE3_ASSOC)){
+        $idC = $rows['id_C'];
 
-    //  echo $montoPago."<br>";
-    //  echo $valorDeuda."<br>";
+        $sql = ("SELECT * FROM Deuda WHERE id_C = '$idC'");
+        $res = $db->query($sql);
+        while($row = $res->fetchArray(SQLITE3_ASSOC)){
+          $id_deuda = $row['id_D'];
+          $valorDeuda = $row['monto'];
 
-      $saldo = $montoPago - $valorDeuda;
+      //  echo "Usted esta en la deuda ". $id_deuda."<br>";
 
-    //  echo $saldo."<br>";
+      //  echo $montoPago."<br>";
+      //  echo $valorDeuda."<br>";
 
-      if ($saldo < 0) {
-        $saldo = abs($saldo);
-        $update = "UPDATE Deuda SET monto = '$saldo' WHERE id_D = '$id_deuda'";
-        echo $update."<br>";
+          $saldo = $montoPago - $valorDeuda;
 
-        $db->exec($update);
-        break;
-      } else {
-        $montoPago = $saldo;
-        $update = "UPDATE Deuda SET monto = '0' WHERE id_D = '$id_deuda'";
-        echo $update."<br>";
-        $db->exec($update);
-      }
+      //  echo $saldo."<br>";
 
+          if ($saldo < 0) {
+            $saldo = abs($saldo);
+            $update = "UPDATE Deuda SET monto = '$saldo' WHERE id_D = '$id_deuda'";
+            echo $update."<br>";
+
+            $db->exec($update);
+            break;
+          } else {
+            $montoPago = $saldo;
+            $update = "UPDATE Deuda SET monto = '0' WHERE id_D = '$id_deuda'";
+            echo $update."<br>";
+            $db->exec($update);
+        }
       }
      }
+    }
+  }
      ?>
      <script>
        window.location.replace('deudores.php');  // redireccionar a otra pagina.
