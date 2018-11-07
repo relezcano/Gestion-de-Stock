@@ -8,7 +8,7 @@ body {
 
 footer {
   background: black;
-  color: white;
+  color: #ffffff;
   padding-bottom: 3px;
   margin: auto 0px 0px 0px;
   position: fixed;
@@ -23,7 +23,6 @@ a {
 
 /* Dropdown Button */
 .dropbtn {
-    background-color: #4CAF50;
     color: white;
     padding-left: 6px;
     padding-right: 6px;

@@ -6,9 +6,13 @@ body {
   background-position: center center;
 }
 
+a {
+  color: white;
+}
+
 footer {
   background: black;
-  color: white;
+  color: #ffffff;
   padding-bottom: 3px;
   margin: auto 0px 0px 0px;
   position: fixed;
@@ -17,24 +21,19 @@ footer {
   bottom: 0px;
 }
 
-th{
-  background-color: #4d4d4d;
-  color: #f0ad4e;
+
+#Dashboard {
+  background-color: rgba(215, 153, 28, 0.6);
+  height: 100%;
+  margin-left: 5px;
+  border-radius: 10px;
+  margin-bottom: 0 auto;
 }
 
-a {
-  color: white;
-}
 
-.tabla {
-  margin-top: 10px;
-  background-color: white;
-  border-radius: 5px;
-}
 
 /* Dropdown Button */
 .dropbtn {
-    background-color: #4CAF50;
     color: white;
     padding-left: 6px;
     padding-right: 6px;
