@@ -64,12 +64,12 @@
             <table class="table table-bordered table-striped">
               <thead class="thead-dark">
                 <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Apellido</th>
-                  <th scope="col">DNI</th>
-                  <th scope="col">Teléfono</th>
-                  <th scope="col">Observaciones</th>
+                  <th scope="col" style="text-align: center">ID</th>
+                  <th scope="col" style="text-align: center">Nombre</th>
+                  <th scope="col" style="text-align: center">Apellido</th>
+                  <th scope="col" style="text-align: center">DNI</th>
+                  <th scope="col" style="text-align: center">Teléfono</th>
+                  <th scope="col" style="text-align: center">Observaciones</th>
                 </tr>
               </thead>
               <tbody id="myTable">

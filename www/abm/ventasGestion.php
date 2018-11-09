@@ -61,12 +61,12 @@
             <table class="table table-bordered table-striped">
               <thead class="thead-dark">
                 <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Fecha Venta</th>
-                  <th scope="col">Valor Total</th>
-                  <th scope="col">Valor Pago</th>
-                  <th scope="col">ID Cliente</th>
-                  <th scope="col">Observaciones</th>
+                  <th scope="col" style="text-align: center">ID</th>
+                  <th scope="col" style="text-align: center">Fecha Venta</th>
+                  <th scope="col" style="text-align: center">Valor Total</th>
+                  <th scope="col" style="text-align: center">Valor Pago</th>
+                  <th scope="col" style="text-align: center">ID Cliente</th>
+                  <th scope="col" style="text-align: center">Observaciones</th>
                 </tr>
               </thead>
               <tbody id="myTable">

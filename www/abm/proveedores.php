@@ -62,10 +62,10 @@
             <table class="table table-bordered table-striped">
               <thead class="thead-dark">
                 <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Concurrencia</th>
-                  <th scope="col">Observaciones</th>
+                  <th scope="col" style="text-align: center">ID</th>
+                  <th scope="col" style="text-align: center">Nombre</th>
+                  <th scope="col" style="text-align: center">Concurrencia</th>
+                  <th scope="col" style="text-align: center">Observaciones</th>
                 </tr>
               </thead>
               <tbody id="myTable">

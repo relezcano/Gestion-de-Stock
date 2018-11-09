@@ -30,6 +30,8 @@ td {
     margin-bottom: 0px;
     width: 50%;
     color: #f0ad4e;
+    padding-top: 1px;
+    padding-bottom: 5px;
     padding-left: 20px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;

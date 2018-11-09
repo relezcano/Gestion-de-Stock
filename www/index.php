@@ -1,3 +1,6 @@
+<?php
+session_start();
+ ?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
@@ -57,6 +60,7 @@
 
     <?php
 
+
       if (isset($_POST['ingresar'])) {
 
         $user = $_POST['user'];
@@ -74,8 +78,13 @@
           $userName = $row['username'];
           $password = $row['pass'];
           $date_alt = $row['date_Alt'];
+          $admin = $row['admin'];
 
-        //  $_SESSION['name'] = $name;
+          $_SESSION['id'] = $id;
+          $_SESSION['name'] = $name;
+          $_SESSION['username'] = $userName;
+          $_SESSION['pass'] = $password;
+          $_SESSION['admin'] = $admin;
 
 
         if($userName == $user && $password == $pass){
@@ -86,7 +95,9 @@
 
         <?php
       } else {
-         echo "Error de autenticación!! Intentelo nuevamente ingresando su usuario y contraseña correctamente.";
+        ?><script>
+         alert("Error de autenticación!! Intentelo nuevamente ingresando su usuario y contraseña correctamente.");
+        </script><?
         }
       }
     }

@@ -61,15 +61,15 @@
             <table class="table table-bordered table-striped">
               <thead class="thead-dark">
                 <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Cantidad</th>
-                  <th scope="col">Precio Compra</th>
-                  <th scope="col">Fecha Alta</th>
-                  <th scope="col">Fecha Vencimiento</th>
-                  <th scope="col">N° Comprobante</th>
-                  <th scope="col">ID Producto</th>
-                  <th scope="col">ID Proveedor</th>
-                  <th scope="col">Observaciones</th>
+                  <th scope="col" style="text-align: center">ID</th>
+                  <th scope="col" style="text-align: center">Cantidad</th>
+                  <th scope="col" style="text-align: center">Precio Compra</th>
+                  <th scope="col" style="text-align: center">Fecha Alta</th>
+                  <th scope="col" style="text-align: center">Fecha Vencimiento</th>
+                  <th scope="col" style="text-align: center">N° Comprobante</th>
+                  <th scope="col" style="text-align: center">ID Producto</th>
+                  <th scope="col" style="text-align: center">ID Proveedor</th>
+                  <th scope="col" style="text-align: center">Observaciones</th>
                 </tr>
               </thead>
               <tbody id="myTable">

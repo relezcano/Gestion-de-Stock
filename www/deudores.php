@@ -26,7 +26,7 @@
       <div class="row">
         <form class="buscar" action="deudores.php" method="post">
         <div class="col-md-5"  style="padding-top: 50px">
-          <input style="margin-left: 20px" class="form-control" type="text" name="filtro" placeholder="Busque por DNI o presione sólo ''Buscar'' para ver todo">
+          <input style="margin-left: 20px" class="form-control" type="text" name="filtro" placeholder="Busque por DNI o presione [Buscar] para ver todo">
         </div>
         <div class="col-md-2"  style="padding-top: 50px">
           <button class="btn btn-info" style="border-radius: 10px; font-size: 12px; padding: 8px; font-size: 14px" type="submit" name="buscar"><span class="glyphicon glyphicon-search"></span> <strong> Buscar</strong></button>
@@ -77,7 +77,7 @@
 
                                   <th style="text-align: center" scope="col">DNI Cliente</th>
                                   <th style="text-align: center" scope="col">Nombre Cliente</th>
-                                  <th style="text-align: center" scope="col">$ Monto</th>
+                                  <th style="text-align: center" scope="col">Monto</th>
                                   <th style="text-align: center" scope="col">ID Venta</th>
                                   <th style="text-align: center" scope="col">Acciones</th>
 
@@ -95,7 +95,7 @@
                                     ?>
                                       <td><?echo $row1['dni'];?></td>
                                       <td><?echo $row1['name_C']," ", $row1['surname_C'];}?></td>
-                                      <td><?echo $row['monto'];?></td>
+                                      <td><?echo '$'.$row['monto'];?></td>
                                       <td><?echo $row['id_V'];?></td>
                                       <td>
 
@@ -197,7 +197,7 @@
 
                                   <th style="text-align: center" scope="col">DNI Cliente</th>
                                   <th style="text-align: center" scope="col">Nombre Cliente</th>
-                                  <th style="text-align: center" scope="col">$ Monto</th>
+                                  <th style="text-align: center" scope="col">Monto</th>
                                   <th style="text-align: center" scope="col">ID Venta</th>
                                   <th style="text-align: center" scope="col">Acciones</th>
 
@@ -211,7 +211,7 @@
                                     ?>
                                       <td><?echo $rowID['dni'];?></td>
                                       <td><?echo $rowID['name_C']," ", $rowID['surname_C'];?></td>
-                                      <td><?echo $row['monto'];?></td>
+                                      <td><?echo '$'.$row['monto'];?></td>
                                       <td><?echo $row['id_V'];?></td>
                                       <td>
 

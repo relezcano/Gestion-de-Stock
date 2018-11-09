@@ -62,13 +62,13 @@
             <table class="table table-bordered table-striped">
               <thead class="thead-dark">
                 <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Unidad Medida</th>
-                  <th scope="col">Precio</th>
-                  <th scope="col">Marca</th>
-                  <th scope="col">Tipo</th>
-                  <th scope="col">Observaciones</th>
+                  <th scope="col" style="text-align: center">ID</th>
+                  <th scope="col" style="text-align: center">Nombre</th>
+                  <th scope="col" style="text-align: center">Unidad Medida</th>
+                  <th scope="col" style="text-align: center">Precio</th>
+                  <th scope="col" style="text-align: center">Marca</th>
+                  <th scope="col" style="text-align: center">Tipo</th>
+                  <th scope="col" style="text-align: center">Observaciones</th>
                 </tr>
               </thead>
               <tbody id="myTable">

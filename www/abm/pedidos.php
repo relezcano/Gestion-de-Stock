@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ style="text-align: center"<!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
     <title>Pedidos</title>
@@ -61,12 +61,12 @@
             <table class="table table-bordered table-striped">
               <thead class="thead-dark">
                 <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Monto</th>
-                  <th scope="col">Fecha Pedido</th>
-                  <th scope="col">Fecha Llegada</th>
-                  <th scope="col">ID Proveedor</th>
-                  <th scope="col">Observaciones</th>
+                  <th scope="col" style="text-align: center">ID</th>
+                  <th scope="col" style="text-align: center">Monto</th>
+                  <th scope="col" style="text-align: center">Fecha Pedido</th>
+                  <th scope="col" style="text-align: center">Fecha Llegada</th>
+                  <th scope="col" style="text-align: center">ID Proveedor</th>
+                  <th scope="col" style="text-align: center">Observaciones</th>
                 </tr>
               </thead>
               <tbody id="myTable">

@@ -26,4 +26,6 @@
 
   </div>
 
+  <button type="button" class="btn btn-warning" onclick="openNav()" style="float: right"><span class="glyphicon glyphicon-align-justify"></span></button>
+
 </div>
