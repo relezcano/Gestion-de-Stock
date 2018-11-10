@@ -26,13 +26,14 @@ session_start();
       require 'conexion_abm.php';
 
       $id = $_SESSION['id'];
+      $nombreActual = $_SESSION['name'];
 
       ?>
 
     <div class="container" style="margin-top: 250px; width: 650px; background-color: #4d4d4d; border-radius: 100px; padding: 10px; opacity: .9">
       <div class="row">
         <div class="col-md-12">
-          <label style="margin-left: 60px; margin-top: 10px"><strong>ID del Usuario Actual: <? echo ' '.$id;?></strong></label>
+          <label style="margin-left: 60px; margin-top: 10px"><strong>Usuario Actual: <? echo ' '.$nombreActual;?></strong></label>
         </div>
       </div>
       <br>
