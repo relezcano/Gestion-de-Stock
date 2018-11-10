@@ -49,7 +49,7 @@ session_start();
             $query = ("SELECT * FROM Usuarios");
             $result = $db->query($query);
 
-          ?><select name="id">
+          ?><select name="id" style="border-radius: 10px">
 
             <?
             while ($rowID = $result->fetchArray(SQLITE3_ASSOC))
