@@ -43,7 +43,7 @@ session_start();
           <div class="col-md-3">
             <label><strong>Elija Usuario</strong></label>
           </div>
-          <div class="col-md-3" style="margin-top: 5px">
+          <div class="col-md-3" style="font-size: 18px">
 
             <?
             $query = ("SELECT * FROM Usuarios");
