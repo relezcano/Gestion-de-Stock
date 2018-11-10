@@ -40,10 +40,25 @@ session_start();
         <div class="row">
           <div class="col-md-3"></div>
           <div class="col-md-3">
-            <label style="padding-top: 5px"><strong>ID del Usuario</strong></label>
+            <label><strong>Elija Usuario</strong></label>
           </div>
-          <div class="col-md-3">
-            <input class="form-control" style="width: 238px; font-weight: bolder" type="text" name="id" placeholder="ID">
+          <div class="col-md-3" style="margin-top: 5px">
+
+            <?
+            $query = ("SELECT * FROM Usuarios");
+            $result = $db->query($query);
+
+          ?><select name="id">
+
+            <?
+            while ($rowID = $result->fetchArray(SQLITE3_ASSOC))
+            {
+              echo '<option value=" '.$rowID['id_U'].' "> '.$rowID['name'].' </option>';
+            }
+            ?>
+            </select>
+
+
           </div>
           <div class="col-md-3"></div>
         </div>
