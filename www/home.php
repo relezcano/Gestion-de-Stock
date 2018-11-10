@@ -26,7 +26,7 @@ session_start();
     <?php
       require "db/conexion.php";
       $db = new MyDB("db");
-      
+
       require "include/top_menu.php";
 
       $idU = $_SESSION['id'];
@@ -51,9 +51,10 @@ session_start();
           <br>
           <img src="img/user.png" alt="perfil" style="padding-left: 105px; padding-bottom: 20px">
           <button class="btn btn-warning" style="color: #262626; border-radius: 20px; border-style: outset; border-width: medium; margin-left: 60.5px; margin-bottom: 20px; margin-top: 20px; font-size: 20px; font-weight: bolder" onclick="window.open('abm/cambiar_nombre.php')">Cambiar Nombre</button> <br>
-          <button class="btn btn-warning" style="color: #262626; border-radius: 20px; border-style: outset; border-width: medium; margin-left: 62px; margin-bottom: 20px; font-size: 20px; font-weight: bolder" href="#">Cambiar Usuario</button> <br>
-          <button class="btn btn-warning" style="color: #262626; border-radius: 20px; border-style: outset; border-width: medium; margin-left: 43px; margin-bottom: 20px; font-size: 20px; font-weight: bolder" href="#">Cambiar Contraseña</button> <br>
-          <button class="btn btn-warning" style="color: #262626; border-radius: 20px; border-style: outset; border-width: medium; margin-left: 29px; font-size: 20px; margin-bottom: 20px; font-weight: bolder" href="#">Agregar Nuevo Usuario</button> <br>
+          <button class="btn btn-warning" style="color: #262626; border-radius: 20px; border-style: outset; border-width: medium; margin-left: 62px; margin-bottom: 20px; font-size: 20px; font-weight: bolder" onclick="window.open('abm/cambiar_user.php')">Cambiar Usuario</button> <br>
+          <button class="btn btn-warning" style="color: #262626; border-radius: 20px; border-style: outset; border-width: medium; margin-left: 43px; margin-bottom: 20px; font-size: 20px; font-weight: bolder" onclick="window.open('abm/cambiar_pass.php')">Cambiar Contraseña</button> <br>
+          <button class="btn btn-warning" style="color: #262626; border-radius: 20px; border-style: outset; border-width: medium; margin-left: 29px; font-size: 20px; margin-bottom: 20px; font-weight: bolder" onclick="window.open('abm/nuevo_user.php')">Agregar Nuevo Usuario</button> <br>
+          <button class="btn btn-warning" style="color: #262626; border-radius: 20px; border-style: outset; border-width: medium; margin-left: 58px; font-size: 20px; margin-bottom: 20px; font-weight: bolder" onclick="window.open('abm/cambiar_permisos.php')">Cambiar Permisos</button> <br>
           <button class="btn btn-warning" style="color: #262626; border-radius: 20px; border-style: outset; border-width: medium; margin-left: 82px; margin-bottom: 20px; font-size: 20px; font-weight: bolder" onclick="window.location.replace('include/logout.php')">Cerrar Sesión</button> <br>
         </div>
 
@@ -68,8 +69,8 @@ session_start();
             <br>
             <img src="img/user1.png" alt="perfil" style="padding-left: 110px; padding-bottom: 20px">
             <button class="btn btn-warning" style="color: #262626; border-radius: 20px; border-style: outset; border-width: medium; margin-left: 60.5px; margin-bottom: 20px; margin-top: 20px; font-size: 20px; font-weight: bolder" onclick="window.open('abm/cambiar_nombre.php')">Cambiar Nombre</button> <br>
-            <button class="btn btn-warning" style="color: #262626; border-radius: 20px; border-style: outset; border-width: medium; margin-left: 62px; margin-bottom: 20px; font-size: 20px; font-weight: bolder" href="#">Cambiar Usuario</button> <br>
-            <button class="btn btn-warning" style="color: #262626; border-radius: 20px; border-style: outset; border-width: medium; margin-left: 43px; margin-bottom: 20px; font-size: 20px; font-weight: bolder" href="#">Cambiar Contraseña</button> <br>
+            <button class="btn btn-warning" style="color: #262626; border-radius: 20px; border-style: outset; border-width: medium; margin-left: 62px; margin-bottom: 20px; font-size: 20px; font-weight: bolder" onclick="window.open('abm/cambiar_user.php')">Cambiar Usuario</button> <br>
+            <button class="btn btn-warning" style="color: #262626; border-radius: 20px; border-style: outset; border-width: medium; margin-left: 43px; margin-bottom: 20px; font-size: 20px; font-weight: bolder" onclick="window.open('abm/cambiar_pass.php')">Cambiar Contraseña</button> <br>
             <button class="btn btn-warning" style="color: #262626; border-radius: 20px; border-style: outset; border-width: medium; margin-left: 80px; margin-bottom: 20px; font-size: 20px; font-weight: bolder" onclick="window.location.replace('include/logout.php')">Cerrar Sesión</button> <br>
           </div>
           <br>
@@ -97,6 +98,7 @@ session_start();
       /* Set the width of the side navigation to 250px */
       function openNav() {
         document.getElementById("mySidenav").style.width = "325px";
+        //document.getElementById("mySidenav").style.height = "780px";
       }
 
       /* Set the width of the side navigation to 0 */
