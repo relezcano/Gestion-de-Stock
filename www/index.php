@@ -15,7 +15,7 @@ session_start();
   </head>
   <body>
 
-    <div class="container-fluid" style="margin-top: 75px; margin-right: 100px">
+    <div class="container-fluid" style="margin-top: 75px; margin-right: 130px">
       <div class="row">
         <div class="col-sm-12" style="padding-left: 548px">
           <img src="img/elephant2.png"  height="350" alt="logo">
@@ -28,7 +28,7 @@ session_start();
       </div>
     </div>
       <br><br><br><br>
-      <form class="login" style="margin-top: -60px; margin-left: 10px" action="index.php" method="post">
+      <form class="login" style="margin-top: -60px; margin-left: 42px" action="index.php" method="post">
       <div class="row">
         <div class="col-sm-3"></div>
         <div class="col-sm-2">
@@ -50,7 +50,7 @@ session_start();
       <br>
       <div class="row">
         <div class="col-sm-5"></div>
-        <div class="col-sm-3" style="padding-left: 100px">
+        <div class="col-sm-3" style="padding-left: 95px">
           <button style="font-family: verdana; font-weight: bolder" type="submit" name="ingresar" class="btn btn-warning btn-md"><span class="glyphicon glyphicon-log-in"></span><strong> INGRESAR</strong></button>
         </div>
         <div class="col-sm-4"></div>

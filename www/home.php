@@ -97,7 +97,7 @@ session_start();
     <script>
       /* Set the width of the side navigation to 250px */
       function openNav() {
-        document.getElementById("mySidenav").style.width = "325px";
+        document.getElementById("mySidenav").style.width = "335px";
         //document.getElementById("mySidenav").style.height = "780px";
       }
 
