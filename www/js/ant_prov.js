@@ -50,30 +50,36 @@ function endAnt(action) {
     var obs_Ant   = $(document).find("textarea[name='obs_Ant']").val();
     var id_Prov2  = $(document).find("input[name='id_Prov']").val();
 
-    $.ajax({
-      url: '../include/cargar_ant.php',
-      data:{monto: monto,
-            datePed: date_Ped,
-            dateLleg: date_Lleg,
-            obsAnt: obs_Ant,
-            idProv: id_Prov2},
-      success: function(data){
-        if(data =='100'){
-          alert("\tSe ha cargado el pedido exitosamente!\t");
-          window.close()
-        }else if (data == '101') {
-          alert("\tDebe completar todos los campos necesarios.\t");
-        } else {
-          alert("\tSe a producido un error inesperado: "+data+".")
-        }
+    if((id_Prov2 !="" && monto !="" && date_Ped != "" && date_Lleg != "") || (id_Prov2 !=undefined && monto !=undefined && date_Ped != undefined && date_Lleg != undefined)){
+      var loadConfir = confirm("\t¿Esta seguro que desea cargar el pedido?\t");
+      if(loadConfir == true){
+        $.ajax({
+          url: '../include/cargar_ant.php',
+          data:{monto: monto,
+                datePed: date_Ped,
+                dateLleg: date_Lleg,
+                obsAnt: obs_Ant,
+                idProv: id_Prov2},
+          success: function(data){
+            if(data =='100'){
+              alert("\tSe ha cargado el pedido exitosamente!\t");
+              window.close()
+            }else if (data == '101') {
+              alert("\tDebe completar todos los campos necesarios.\t");
+            } else {
+              alert("\tSe a producido un error inesperado: "+data+".")
+            }
+          }
+        });
       }
-    })
+    }else{
+      alert("\tDebe completar todos los campos necesarios.\t");
+    }
 
   } else if (action == 'cancel') {
-
-    alert("\tSe a cancelado la carga\t\n\tVolviendo al menu principal\t");
-    window.close()
-
+    var confCancel = confirm('\t¿Esta seguro que desea cancelar el pedido?\t');
+    if (confCancel == true) {
+      window.close();
+    }
   }
-
 }

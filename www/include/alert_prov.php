@@ -4,7 +4,7 @@
   $db = new MyDB('../db');
 
   //Se seleccionan todos los anticipos existentes junto con el nombre del proveedor del anticipo.
-  $sqlAnt = ("SELECT Ant_Prov.*, Proveedor.name_Prov FROM Ant_Prov INNER JOIN Proveedor ON Ant_Prov.id_Prov2 = Proveedor.id_Prov ORDER BY id_Ant ASC");
+  $sqlAnt = ("SELECT Ant_Prov.*, Proveedor.name_Prov, Proveedor.tel_Prov, Proveedor.dir_Prov FROM Ant_Prov INNER JOIN Proveedor ON Ant_Prov.id_Prov2 = Proveedor.id_Prov ORDER BY id_Ant ASC");
   $resAnt = $db->query($sqlAnt);
 
   //Se seleccionan todos los Proveedores de la base de datos para fijarse la ultima vez que pasaron.
@@ -24,9 +24,12 @@
   while ($Ant = $resAnt->fetchArray(SQLITE3_ASSOC)){
 
     //Se extraen las variables necesarias.
-    $name_Prov = $Ant['name_Prov'];
-    $monto = $Ant['monto'];
-    $id_Ant = $Ant['id_Ant'];
+    $name_Prov  = $Ant['name_Prov'];
+    $monto      = $Ant['monto'];
+    $id_Ant     = $Ant['id_Ant'];
+    $tel_Prov   = $Ant['tel_Prov'];
+    $dir_Prov   = $Ant['dir_Prov'];
+
 
     //Si el proveedor llega mañana se le avisa al usuario la cantidad de plata que debe guardar y el nombre del proveedor que va a venir.
     if($Ant['date_Lleg'] == $tomorrow){
@@ -38,6 +41,8 @@
     elseif ($Ant['date_Lleg'] == $yesterday) {
       echo "<div id='alrtProv' onClick='popUpModAnt(this)'>";
       echo "<p>Ayer debio haber pasado $name_Prov ¿Paso?</p>";
+      echo "<p>Tel.: $tel_Prov</p>";
+      echo "<p>Dirección: $dir_Prov</p>";
       echo "<p>¿Quiere modificar la fecha? Haga click aqui.</p>";
       echo "<input type='hidden' name='id_Ant' value='$id_Ant'>";
       echo "</div>";

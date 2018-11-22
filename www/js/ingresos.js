@@ -199,9 +199,6 @@ function endLote(action){
       var id_Prod1    = $(document.getElementById("myTable").rows[i]).find("input[name='id_prod']").val();
 
       //Se agregan los datos de cada lote que se quiere cargar a la query
-      console.log(cant);
-      console.log(price_C);
-      console.log(date_Ven);
       if((cant != "" && price_C != "" && date_Ven != "") && (cant != undefined && price_C != undefined && date_Ven != undefined)){
 
           query = query + "('"+cant+"', '"+price_C+"', '"+date_Alt+"', '"+date_Ven+"', '"+n_Comp+"', '"+obs_L+"', '"+id_Prod1+"', '"+id_Prov1+"')";
@@ -219,9 +216,6 @@ function endLote(action){
       }
     }
 
-    console.log(numRows);
-    console.log(n_Comp);
-    console.log(id_Prov1  );
     if(n_Comp != "" && (id_Prov1 != null || id_Prov1 != "") && numRows != 0){
       var loadConf = confirm("\t¿Esta seguro que desea ingresar los productos?\t");
       if(loadConf == true){
@@ -235,25 +229,34 @@ function endLote(action){
           url: '../include/cargar_lote.php',
           data: {query: query},
           success: function(data){
-            console.log(query);
-            console.log(data);
             if(data == '100'){
               alert("\tSe ha cargado la mercaderia exitosamente\t");
 
               //Se pregunta al usuario si desea imprimir las etiquetas para colocar en las cajas de los lotes.
-              // var printLabel = confirm("\t¿Desea imprimir las etiquetas para los lotes?\t");
-              // if(printLabel == true){
-              //
-              //   $.ajax({
-              //     url: "../include/label_lotes.php",
-              //     data: {nComp: n_Comp}
-              //   });
-              //
-              // }
+              var printLabel = confirm("\t¿Desea imprimir las etiquetas para los lotes?\t");
+              if(printLabel == true){
 
-              //IMPLREMENTACION DE IMPRESION DE ETIQUETAS POR LOTES
+                var bultos = [];
 
-              window.close();
+                for (var   j = 0; j < numRows; j++){
+
+                  var actBulto = $(document.getElementById("myTable").rows[j]).find("input[name='cant_bultos']").val();
+                  bultos.push(actBulto);
+
+                }
+                $.ajax({
+                  url: "../include/label_lotes.php",
+                  data: {nComp: n_Comp,
+                        bultos: bultos},
+                  success: function(data){
+                    labels = window.open('../include/labels.php/?data='+data)
+                    labels.print();
+                    window.close();
+                  }
+                });
+              }else {
+                window.close();
+              }
             } else if (data == '101') {
               alert("\tSe ha generado un error en la carga, intente nuevamente\t");
             }

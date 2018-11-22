@@ -2,6 +2,17 @@
 
 //En las alertas de Productos, te avisa los productos en stock que esten en escaces, segun el margen que se dio de alerta (cant_Rep), siempre y cuando su estado sea Activo (A). Los productos que esten de Baja (B) no figuraran.
 setInterval(function(){
+  var d = new Date();
+  var dd = d.getDate();
+  var mm = d.getMonth()+1; //January is 0!
+  var yyyy = d.getFullYear();
+  if(dd<10) {
+      dd = '0'+dd;
+  }
+  if(mm<10) {
+      mm = '0'+mm;
+  }
+
   $.ajax({
     url: '../include/alert_prd.php',
     success: function(data){
@@ -45,20 +56,18 @@ function popUpModAnt(w) {
 
   var id_Ant = $(w).find("input[name='id_Ant']").val();
 
-  window.open('abm/lotes.php/?idAnt='+id_Ant);  //MODIFICAR ESTO! No debe redireccionar a Lotes.php sino a Anticipos.php
+  window.open('abm/pedidos.php/?idAnt='+id_Ant);  //MODIFICAR ESTO! No debe redireccionar a Lotes.php sino a Anticipos.php
 
 }
 
 //Al hacer click en el boton del menu de usuario se amplia el menu desde el costado.
-function navBar(){
- var estado = $(document.getElementById('mySidenav')).find("input[name='estadoNavBar']").val();
- if(estado == 'close'){
-     document.getElementById("mySidenav").style.width = "335px";
-     $(document.getElementById('mySidenav')).find("input[name='estadoNavBar']").val('open');
- } else {
-   document.getElementById("mySidenav").style.width = "0";
-  $(document.getElementById('mySidenav')).find("input[name='estadoNavBar']").val('close');
- }
+function openNav() {
+  document.getElementById("mySidenav").style.width = "335px";
+}
+
+//Si se hace click en el boton de cierre se vuelve a correr el menu y desaparece.
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
 }
 
 //Conjunto de funciones para deshabilitar el boton derecho.
