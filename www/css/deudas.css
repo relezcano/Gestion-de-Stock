@@ -17,6 +17,15 @@ footer {
   bottom: 0px;
 }
 
+th{
+  background-color: #4d4d4d;
+  color: #f0ad4e;
+}
+
+td {
+  text-align: center;
+}
+
 h1 {
   font-style: italic;
   text-shadow: 1px 1px #666, 3px 3px #ffa64d, 4px 4px #666, 5px 5px #000000;
@@ -25,11 +34,6 @@ h1 {
   border-top-right-radius: 65px;
   border-top-left-radius: 65px;
   padding: 15px;
-}
-
-th{
-  background-color: #4d4d4d;
-  color: #f0ad4e;
 }
 
 a {
@@ -66,6 +70,61 @@ p {
   border-top-right-radius: 80px;
   border-bottom-right-radius: 90px;
   border-bottom-left-radius: 80px;
+}
+
+
+.titulo {
+  text-align: right;
+  background-color: #d9d9d9;
+  color: #cc0000;
+  width: 320px;
+  margin-top: 0px;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+  padding: 1px;
+  border-color: black;
+  border: solid 2px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+
+}
+
+.valor_total {
+  text-align: center;
+  color: #cc0000;
+  background-color: #d9d9d9;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  width: 160px;
+  margin-top: 0px;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+  border-top: solid 1px;
+  border-bottom: solid 2px;
+  border-left: solid 2px;
+  border-right: solid 2px;
+}
+
+h5 {
+  width: 760px;
+  margin-top: 0px;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+  padding: 10px;
+  font-size: 18px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+}
+
+.vuelto {
+  font-size: 28px;
 }
 
 .tabla {

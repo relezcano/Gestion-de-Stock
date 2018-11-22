@@ -3,28 +3,11 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  background-position: center center;
+  background-position: center;
 }
 
-footer {
-  background: black;
+a {
   color: white;
-  padding-bottom: 3px;
-  margin: auto 0px 0px 0px;
-  position: fixed;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-}
-
-h1 {
-  font-style: italic;
-  text-shadow: 1px 1px #666, 3px 3px #ffa64d, 4px 4px #666, 5px 5px #000000;
-  background-color: #595959;
-  opacity: .98;
-  border-top-right-radius: 65px;
-  border-top-left-radius: 65px;
-  padding: 15px;
 }
 
 th{
@@ -32,47 +15,27 @@ th{
   color: #f0ad4e;
 }
 
-a {
-  color: white;
+td {
+  text-align: center;
 }
 
-label {
-  color: #ffffff;
-  font-size: 20px;
-  text-shadow: 1px 2px #000000;
-  font-style: italic;
+#invis_input{
+  background-color: inherit;
+  border: 0;
+  width: 100%;
 }
 
-
-p {
-  color: white;
-  text-align: justify;
-  margin-top: 20px;
-  font-weight: bold;
-  font-size: 18px;
-  font-family: arial;
-}
-
-.formulario {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  width: 820px;
-  margin-top: 0px;
-  margin-right: auto;
-  margin-bottom: 0px;
-  margin-left: auto;
-  background-color: #595959;
-  opacity: .98;
-  border-top-right-radius: 80px;
-  border-bottom-right-radius: 90px;
-  border-bottom-left-radius: 80px;
-}
-
-.tabla {
-  margin-top: 10px;
-  background-color: white;
-  border-radius: 5px;
-}
+  #topDiv {
+    background-color: #4d4d4d;
+    margin-bottom: 0px;
+    width: 50%;
+    color: #f0ad4e;
+    padding-top: 1px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
 
 /* Dropdown Button */
 .dropbtn {
@@ -84,6 +47,12 @@ p {
     padding-bottom: 4px;
     font-size: 16px;
     border: none;
+}
+
+.tabla {
+  margin-top: 10px;
+  background-color: white;
+  border-radius: 20px;
 }
 
 /* The container <div> - needed to position the dropdown content */

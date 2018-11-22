@@ -6,66 +6,28 @@ body {
   background-position: center center;
 }
 
-footer {
-  background: black;
-  color: white;
-  padding-bottom: 3px;
-  margin: auto 0px 0px 0px;
-  position: fixed;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-}
-
-h1 {
-  font-style: italic;
-  text-shadow: 1px 1px #666, 3px 3px #ffa64d, 4px 4px #666, 5px 5px #000000;
-  background-color: #595959;
-  opacity: .98;
-  border-top-right-radius: 65px;
-  border-top-left-radius: 65px;
-  padding: 15px;
-}
-
-th{
-  background-color: #4d4d4d;
-  color: #f0ad4e;
-}
-
 a {
   color: white;
 }
 
+h1 {
+  font-style: italic;
+  text-shadow: 1px 1px #666, 2px 2px #86D6D3, 3px 3px #666, 4px 4px #000000;
+}
+
+h2 {
+  font-style: italic;
+  text-shadow: 2px 2px #000000;
+}
+
 label {
   color: #ffffff;
-  font-size: 20px;
-  text-shadow: 1px 2px #000000;
-  font-style: italic;
-}
-
-
-p {
-  color: white;
-  text-align: justify;
-  margin-top: 20px;
-  font-weight: bold;
   font-size: 18px;
-  font-family: arial;
+  text-shadow: 1px 2px #000000;
 }
 
-.formulario {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  width: 820px;
-  margin-top: 0px;
-  margin-right: auto;
-  margin-bottom: 0px;
-  margin-left: auto;
-  background-color: #595959;
-  opacity: .98;
-  border-top-right-radius: 80px;
-  border-bottom-right-radius: 90px;
-  border-bottom-left-radius: 80px;
+#Selected_id{
+  cursor: pointer;
 }
 
 .tabla {

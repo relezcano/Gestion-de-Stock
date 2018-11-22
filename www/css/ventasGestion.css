@@ -1,3 +1,5 @@
+@charset "ISO-8859-1";
+
 body {
   background-image: url("../img/fondo.jpg");
   background-repeat: no-repeat;
@@ -17,6 +19,11 @@ footer {
   bottom: 0px;
 }
 
+th{
+  background-color: #4d4d4d;
+  color: #f0ad4e;
+}
+
 h1 {
   font-style: italic;
   text-shadow: 1px 1px #666, 3px 3px #ffa64d, 4px 4px #666, 5px 5px #000000;
@@ -27,45 +34,8 @@ h1 {
   padding: 15px;
 }
 
-th{
-  background-color: #4d4d4d;
-  color: #f0ad4e;
-}
-
 a {
   color: white;
-}
-
-label {
-  color: #ffffff;
-  font-size: 20px;
-  text-shadow: 1px 2px #000000;
-  font-style: italic;
-}
-
-
-p {
-  color: white;
-  text-align: justify;
-  margin-top: 20px;
-  font-weight: bold;
-  font-size: 18px;
-  font-family: arial;
-}
-
-.formulario {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  width: 820px;
-  margin-top: 0px;
-  margin-right: auto;
-  margin-bottom: 0px;
-  margin-left: auto;
-  background-color: #595959;
-  opacity: .98;
-  border-top-right-radius: 80px;
-  border-bottom-right-radius: 90px;
-  border-bottom-left-radius: 80px;
 }
 
 .tabla {
