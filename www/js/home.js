@@ -61,14 +61,16 @@ function popUpModAnt(w) {
 }
 
 //Al hacer click en el boton del menu de usuario se amplia el menu desde el costado.
-function openNav() {
-  document.getElementById("mySidenav").style.width = "335px";
-}
-
-//Si se hace click en el boton de cierre se vuelve a correr el menu y desaparece.
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-}
+function navBar(){
+  var estadoNav = $(document).find("input[name='estadoNavBar']").val();
+  if (estadoNav == 'close') {
+    document.getElementById("mySidenav").style.width = "335px";
+    $(document).find("input[name='estadoNavBar']").val("open");
+  } else {
+      document.getElementById("mySidenav").style.width = "0";
+      $(document).find("input[name='estadoNavBar']").val("close");
+    }
+  }
 
 //Conjunto de funciones para deshabilitar el boton derecho.
 // var isNS = (navigator.appName == "Netscape") ? 1 : 0;
