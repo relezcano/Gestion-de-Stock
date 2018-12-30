@@ -46,18 +46,152 @@
         </div>
       </div>
 
-    <div class="row">
-      <div class="col-lg-12">
+
         <?
 
         require '../db/conexion.php';
         $db = new MyDB('../db');
 
 
+
           $sql = ("SELECT * FROM Producto ORDER BY id_Prod ASC");
           $ret = $db->query($sql);
 
           ?>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <!-- Modificar Producto -->
+              <?
+              if (isset($_POST['modificar'])) {
+                if (isset($_POST['select'])) {
+
+
+                  $idSel = $_POST['select'];
+
+                  $sql = ("SELECT * FROM Producto WHERE id_Prod = '$idSel'");
+                  $ret = $db->query($sql);
+
+                  while($row = $ret->fetchArray(SQLITE3_ASSOC)){
+                    $id = $row['id_Prod'];
+                    $name = $row['name_Prod'];
+                    $medida = $row['u_Med'];
+                    $precio = $row['price_V'];
+                    $marca = $row['id_M1'];
+                    $tipo = $row['id_T1'];
+                    $obs = $row['obs_Prod'];
+
+
+                    // llamar nombre de la marca y el tipo usando el id de cada uno!!!!!
+
+
+                    // VER TEMA DE PONER FECHA ACTUAL AUTOMATICAMENTE EN PRODUCTO...
+                  //  $date = date_format(date_create_from_format('d-m-Y', $dateIn), 'Y-m-d');
+              ?>
+
+              <div class="container-fluid" style="margin-top: 50px">
+                <div class="row">
+                  <div class="col-md-1"></div>
+                  <div class="col-md-6" style="margin-left: 7px">
+                    <h1 style="font-size: 35px; color: #ffffff; padding-left: 35px"><strong>Modificar Producto</strong></h1>
+                  </div>
+                  <div class="col-md-5"></div>
+                </div>
+
+                <div class="formulario">
+
+                <form class="modificar" action="modificar_producto.php" method="post" style="margin-left: 50px">
+
+                  <input type="hidden" name="id_Prod" value="<?echo $id;?>">
+
+                  <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                      <label style="margin-top: 5px">Nombre</label>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="name_Prod" value="<?echo $name;?>">
+                    </div>
+                    <div class="col-md-5"></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                      <label style="margin-top: 5px">Unidad Medida</label>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="u_Med" value="<?echo $medida;?>">
+                    </div>
+                    <div class="col-md-5"></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                      <label style="margin-top: 5px">Precio Venta</label>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="price_V" value="<?echo $precio;?>">
+                    </div>
+                    <div class="col-md-5"></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                      <label style="margin-top: 5px">ID Marca</label>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-control" style="width: 90px; margin-bottom: 5px" type="text" name="id_M1" value="<?echo $marca;?>">
+                    </div>
+                    <div class="col-md-5"></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                      <label style="margin-top: 5px">ID Tipo</label>
+                    </div>
+                    <div class="col-md-3">
+                      <input class="form-control" style="width: 90px; margin-bottom: 5px" type="text" name="id_T1" value="<?echo $tipo;?>">
+                    </div>
+                    <div class="col-md-5"></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                      <label style="margin-top: 5px">Observaciones</label>
+                    </div>
+                    <div class="col-md-3">
+                      <textarea class="form-control" name="obs_Prod" rows="8" cols="60" style="width: 380px"><?echo $obs;?></textarea>
+                    </div>
+                    <div class="col-md-5"></div>
+                  </div>
+
+                  <br>
+
+                  <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3">
+                      <button style="font-family: verdana; font-weight: bolder" type="submit" name="guardar" class="btn btn-success btn-md"><span class="glyphicon glyphicon-floppy-disk"></span><strong> GUARDAR</strong></button>
+                    </div>
+                    <div class="col-md-3">
+                      <button style="margin-left: 30px; font-family: verdana; font-weight: bolder" type="button" name="cancelar" onclick="location.href = 'productos.php';" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-remove"></span><strong> CANCELAR</strong></button>
+                    </div>
+                      <div class="col-md-3"></div>
+                    </div>
+                  </form>
+                  </div>
+              <br><br>
+              <?
+
+                }
+              }
+              }
+              ?>
+
           <div class="tabla">
             <div class="table-responsive">
             <table class="table table-bordered table-striped">
@@ -78,9 +212,18 @@
                     <td><?echo $row['id_Prod'];?></td>
                     <td><?echo $row['name_Prod'];?></td>
                     <td><?echo $row['u_Med'];?></td>
-                    <td><?echo $row['price_V'];?></td>
-                    <td><?echo $row['id_M1'];?></td>
-                    <td><?echo $row['id_T1'];?></td>
+                    <td><?echo '$ '.$row['price_V'];?></td>
+                    <td><? $idM = $row['id_M1'];
+                    $consM = ("SELECT * FROM Marca WHERE id_M = '$idM'");
+            				$retM = $db->query($consM);
+            				$rowM = $retM->fetchArray(SQLITE3_ASSOC);
+                    echo $rowM['name_M'];?></td>
+
+                    <td><?$idT = $row['id_T1'];
+                    $consT = ("SELECT * FROM Tipo WHERE id_T = '$idT'");
+            				$retT = $db->query($consT);
+            				$rowT = $retT->fetchArray(SQLITE3_ASSOC);
+                    echo $rowT['name_T'];?></td>
                     <td><?echo $row['obs_Prod'];?></td>
                 </tr>
                 <?}?>
@@ -92,138 +235,9 @@
       </div>
     </div>
 
-<!-- Modificar Cliente -->
-<?
-if (isset($_POST['modificar'])) {
-  if (isset($_POST['select'])) {
 
 
-    $idSel = $_POST['select'];
-
-    $sql = ("SELECT * FROM Producto WHERE id_Prod = '$idSel'");
-    $ret = $db->query($sql);
-
-    while($row = $ret->fetchArray(SQLITE3_ASSOC)){
-      $id = $row['id_Prod'];
-      $name = $row['name_Prod'];
-      $medida = $row['u_Med'];
-      $precio = $row['price_V'];
-      $marca = $row['id_M1'];
-      $tipo = $row['id_T1'];
-      $obs = $row['obs_Prod'];
-
-
-      // llamar nombre de la marca y el tipo usando el id de cada uno!!!!!
-
-
-      // VER TEMA DE PONER FECHA ACTUAL AUTOMATICAMENTE EN PRODUCTO...
-    //  $date = date_format(date_create_from_format('d-m-Y', $dateIn), 'Y-m-d');
-?>
-
-<div class="container-fluid" style="margin-top: 50px">
-  <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-6" style="margin-left: 7px">
-      <h1 style="font-size: 35px; color: #ffffff; padding-left: 35px"><strong>Modificar Producto</strong></h1>
-    </div>
-    <div class="col-md-5"></div>
-  </div>
-
-  <div class="formulario">
-
-  <form class="modificar" action="modificar_producto.php" method="post" style="margin-left: 50px">
-
-    <input type="hidden" name="id_Prod" value="<?echo $id;?>">
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">Nombre</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="name_Prod" value="<?echo $name;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">Unidad Medida</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="u_Med" value="<?echo $medida;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">Precio Venta</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="price_V" value="<?echo $precio;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">ID Marca</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 90px; margin-bottom: 5px" type="text" name="id_M1" value="<?echo $marca;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">ID Tipo</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 90px; margin-bottom: 5px" type="text" name="id_T1" value="<?echo $tipo;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">Observaciones</label>
-      </div>
-      <div class="col-md-3">
-        <textarea class="form-control" name="obs_Prod" rows="8" cols="60" style="width: 380px"><?echo $obs;?></textarea>
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <br>
-
-    <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-3">
-        <button style="font-family: verdana; font-weight: bolder" type="submit" name="guardar" class="btn btn-success btn-md"><span class="glyphicon glyphicon-floppy-disk"></span><strong> GUARDAR</strong></button>
-      </div>
-      <div class="col-md-3">
-        <button style="margin-left: 30px; font-family: verdana; font-weight: bolder" type="button" name="cancelar" onclick="location.href = 'productos.php';" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-remove"></span><strong> CANCELAR</strong></button>
-      </div>
-        <div class="col-md-3"></div>
-      </div>
-    </form>
-    </div>
-<br><br>
-<?
-
-  }
-}
-}
-?>
-
-<!-- Eliminar Cliente -->
+<!-- Eliminar Producto -->
 
 <?
   if(isset($_POST['eliminar'])){

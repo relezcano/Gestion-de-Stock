@@ -61,23 +61,66 @@
 				<div class="row">
 					<div class="col-md-1"></div>
 					<div class="col-md-3">
-						<label style="margin-top: 5px">ID Marca</label>
+						<label style="margin-top: 5px">Marca Producto</label>
 					</div>
-					<div class="col-md-3">
-						<input class="form-control" style="width: 90px; margin-bottom: 5px" type="text" name="id_M1" placeholder="ID Marca">
+					<div class="col-md-3" style="margin-top: 5px; font-size: 16px">
+						<?
+						require '../db/conexion.php';
+						$db = new MyDB('../db');
+
+						$queryM = ("SELECT * FROM Marca");
+            $result = $db->query($queryM);
+
+          ?><select name="marca" style="border-radius: 10px; padding: 5px">
+
+            <?
+            while ($rowIDM = $result->fetchArray(SQLITE3_ASSOC))
+            {
+							$idmarca = $rowIDM['id_M'];
+							$idnamemar = $rowIDM['name_M'];
+              echo '<option value="'.$idmarca.'">'.$idnamemar.'</option>';
+            }
+            ?>
+            </select>
 					</div>
-					<div class="col-md-5"></div>
+					<div class="col-md-1">
+						<input type="checkbox" name="checkmar" style="margin-top: 15px; margin-left: 35px">
+					</div>
+					<div class="col-md-4">
+						<input style="margin-top: 5px; border-radius: 10px; text-align: center; padding: 5px" type="text" name="nueva_marca" placeholder="Ingrese nueva marca...">
+					</div>
 				</div>
 
 				<div class="row">
 					<div class="col-md-1"></div>
 					<div class="col-md-3">
-						<label style="margin-top: 5px">ID Tipo</label>
+						<label style="margin-top: 5px">Tipo Producto</label>
 					</div>
-					<div class="col-md-3">
-						<input class="form-control" style="width: 90px; margin-bottom: 5px" type="text" name="id_T1" placeholder="ID Tipo">
+
+					<div class="col-md-3" style="margin-top: 5px; font-size: 16px; margin-bottom: 10px ">
+						<?
+            $queryT = ("SELECT * FROM Tipo");
+            $result2 = $db->query($queryT);
+
+          ?><select name="tipo" style="border-radius: 10px; padding: 5px">
+
+            <?
+            while ($rowIDT = $result2->fetchArray(SQLITE3_ASSOC))
+            {
+							$idtipo = $rowIDT['id_T'];
+							$idnametipo = $rowIDT['name_T'];
+              echo '<option value="'.$idtipo.'">'.$idnametipo.'</option>';
+            }
+            ?>
+            </select>
+
 					</div>
-					<div class="col-md-5"></div>
+					<div class="col-md-1">
+						<input type="checkbox" name="checktipo" style="margin-top: 15px; margin-left: 35px">
+					</div>
+					<div class="col-md-4">
+						<input style="margin-top: 5px; border-radius: 10px; text-align: center; padding: 5px" type="text" name="nuevo_tipo" placeholder="Ingrese nuevo tipo...">
+					</div>
 				</div>
 
 				<div class="row">
@@ -109,42 +152,120 @@
 <?php
 
 	if (isset($_POST['guardar'])) {
-		if ($_POST['name_Prod'] == "" || $_POST['u_Med'] == "" || $_POST['price_V'] == "" || $_POST['id_M1'] == "" || $_POST['id_T1'] == ""){
+		if ($_POST['name_Prod'] == "" || $_POST['u_Med'] == "" || $_POST['price_V'] == ""){
 			echo "Debe completar todos los campos para poder realizar el alta del cliente!";
+
 		} else {
 
 			$name = $_POST['name_Prod'];
 			$medida = $_POST['u_Med'];
 			$precio = $_POST['price_V'];
 			$obs = $_POST['obs_Prod'];
-			$idM = $_POST['id_M1'];
-			$idT = $_POST['id_T1'];
+			$idMarca = $_POST['marca'];
+			$idTipo = $_POST['tipo'];
+			$checkmar = $_POST['checkmar'];
+			$checktipo = $_POST['checktipo'];
 
-			// copiar conexion en todos los abm
 
-			require '../db/conexion.php';
-			$db = new MyDB('../db');
+			if (isset($checkmar)) {
+				$newMar = $_POST['nueva_marca'];
+				$sqlM = "INSERT INTO Marca (name_M) VALUES ('$newMar')";
+				$db->exec($sqlM);
+				$consM = ("SELECT * FROM Marca WHERE name_M = '$newMar'");
+				$retM = $db->query($consM);
+				$rowM = $retM->fetchArray(SQLITE3_ASSOC);
+				$idMar = $rowM['id_M'];
 
-			$query = "INSERT INTO Producto (name_Prod, u_Med, price_V, obs_Prod, id_M1, id_T1) VALUES ('$name', '$medida', '$precio', '$obs', '$idM', '$idT')";
+				if (isset($checktipo)) {
+					$newTip = $_POST['nuevo_tipo'];
+					$sqlT = "INSERT INTO Tipo (name_T) VALUES ('$newTip')";
+					$db->exec($sqlT);
+					$consT = ("SELECT * FROM Tipo WHERE name_T = '$newTip'");
+					$retT = $db->query($consT);
+					$rowT = $retT->fetchArray(SQLITE3_ASSOC);
+					$idTip = $rowT['id_T'];
 
-			$db->exec($query);
+					$query = "INSERT INTO Producto (name_Prod, u_Med, price_V, obs_Prod, id_M1, id_T1) VALUES ('$name', '$medida', '$precio', '$obs', '$idMar', '$idTip')";
 
-			echo "Producto guardado exitosamente!!!";
+					$db->exec($query);
 
-			// cerrar BD agregar a todos-....
-			$db->close();
-			unset($db);
+					echo "Producto guardado exitosamente!!!";
+
+					$db->close();
+					unset($db);
+					?>
+
+					<script>
+		        window.location.replace('productos.php');  // redireccionar a otra pagina.
+		      </script><?
+
+				} else {
+
+					$query = "INSERT INTO Producto (name_Prod, u_Med, price_V, obs_Prod, id_M1, id_T1) VALUES ('$name', '$medida', '$precio', '$obs', '$idMar', '$idTipo')";
+
+					$db->exec($query);
+
+					echo "Producto guardado exitosamente!!!";
+
+					$db->close();
+					unset($db);
+					?>
+
+					<script>
+		        window.location.replace('productos.php');  // redireccionar a otra pagina.
+		      </script><?
+
+				}
+			} else {
+
+				if (isset($checktipo)) {
+					$newTip = $_POST['nuevo_tipo'];
+					$sqlT = "INSERT INTO Tipo (name_T) VALUES ('$newTip')";
+					$db->exec($sqlT);
+					$consT = ("SELECT * FROM Tipo WHERE name_T = '$newTip'");
+					$retT = $db->query($consT);
+					$rowT = $retT->fetchArray(SQLITE3_ASSOC);
+					$idTip = $rowT['id_T'];
+
+					$query = "INSERT INTO Producto (name_Prod, u_Med, price_V, obs_Prod, id_M1, id_T1) VALUES ('$name', '$medida', '$precio', '$obs', '$idMarca', '$idTip')";
+
+					$db->exec($query);
+
+					echo "Producto guardado exitosamente!!!";
+
+
+					$db->close();
+					unset($db);
+					?>
+
+					<script>
+		        window.location.replace('productos.php');  // redireccionar a otra pagina.
+		      </script><?
+				}
+
+			}
+
+			if ($checkmar == "" && $checktipo == "") {
+
+				$query = "INSERT INTO Producto (name_Prod, u_Med, price_V, obs_Prod, id_M1, id_T1) VALUES ('$name', '$medida', '$precio', '$obs', '$idMarca', '$idTipo')";
+
+				$db->exec($query);
+
+				echo "Producto guardado exitosamente!!!";
+
+
+				$db->close();
+				unset($db);
 
 			?>
 			<script>
-        window.location.replace('productos.php');  // redireccionar a otra pagina.
-      </script><?
+				window.location.replace('productos.php');  // redireccionar a otra pagina.
+			</script><?
+			}
 		}
 	}
+
 ?>
-
-
-
 
 </body>
 </html>
