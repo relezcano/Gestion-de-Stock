@@ -89,7 +89,7 @@
                   //  $date = date_format(date_create_from_format('d-m-Y', $dateIn), 'Y-m-d');
               ?>
 
-              <div class="container-fluid" style="margin-top: 50px">
+              <div class="container-fluid">
                 <div class="row">
                   <div class="col-md-1"></div>
                   <div class="col-md-6" style="margin-left: 7px">
@@ -142,8 +142,29 @@
                     <div class="col-md-3">
                       <label style="margin-top: 5px">ID Marca</label>
                     </div>
-                    <div class="col-md-3">
-                      <input class="form-control" style="width: 90px; margin-bottom: 5px" type="text" name="id_M1" value="<?echo $marca;?>">
+                    <div class="col-md-3"><?
+                      $queryM = ("SELECT * FROM Marca");
+                      $result = $db->query($queryM);
+
+                    ?><select name="id_M1" style="border-radius: 10px; padding: 5px">
+                      <?
+                      $queryMar = ("SELECT * FROM Marca WHERE id_M = '$marca'");
+                      $res = $db->query($queryMar);
+                      $rowmarca = $res->fetchArray(SQLITE3_ASSOC);
+                      $idsemar = $rowmarca['id_M'];
+                      $nameselmar = $rowmarca['name_M'];
+                      echo '<option selected value="'.$idselmar.'">'.$nameselmar.'</option>';
+                      ?>
+                      <?
+                      while ($rowIDM = $result->fetchArray(SQLITE3_ASSOC))
+                      {
+          							$idmarca = $rowIDM['id_M'];
+          							$idnamemar = $rowIDM['name_M'];
+
+                        echo '<option value="'.$idmarca.'">'.$idnamemar.'</option>';
+                      }
+                      ?>
+                      </select>
                     </div>
                     <div class="col-md-5"></div>
                   </div>
@@ -153,8 +174,28 @@
                     <div class="col-md-3">
                       <label style="margin-top: 5px">ID Tipo</label>
                     </div>
-                    <div class="col-md-3">
-                      <input class="form-control" style="width: 90px; margin-bottom: 5px" type="text" name="id_T1" value="<?echo $tipo;?>">
+                    <div class="col-md-3"><?
+                      $queryM = ("SELECT * FROM Tipo");
+                      $resultado = $db->query($queryM);
+
+                    ?><select name="id_T1" style="border-radius: 10px; padding: 5px">
+                      <?
+                      $querytip = ("SELECT * FROM Tipo WHERE id_T = '$tipo'");
+                      $resu = $db->query($querytip);
+                      $rowtipo = $resu->fetchArray(SQLITE3_ASSOC);
+                      $idsetip = $rowtipo['id_T'];
+                      $nameseltip = $rowtipo['name_T'];
+                      echo '<option selected value="'.$idseltip.'">'.$nameseltip.'</option>';
+                      ?>
+                      <?
+                      while ($rowIDT = $resultado->fetchArray(SQLITE3_ASSOC))
+                      {
+          							$idtipo = $rowIDT['id_T'];
+          							$idnametipo = $rowIDT['name_T'];
+                        echo '<option value="'.$idtipo.'">'.$idnametipo.'</option>';
+                      }
+                      ?>
+                      </select>
                     </div>
                     <div class="col-md-5"></div>
                   </div>
