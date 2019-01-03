@@ -16,7 +16,7 @@ $db = new MyDB('../db');
     ?>
 
     <script>
-      window.location.replace('deudores.php');  // redireccionar a otra pagina.
+      window.location.replace('../deudores.php');  // redireccionar a otra pagina.
     </script>
 
     <?

@@ -63,7 +63,7 @@ h2 {
 
 /* The side navigation menu */
 .sidenav {
-    height: 87.6%; /* 100% Full-height */
+    height: 90%; /* 100% Full-height - estabamos usando 87.6% */ 
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
     z-index: 1; /* Stay on top */

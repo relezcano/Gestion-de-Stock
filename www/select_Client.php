@@ -27,7 +27,7 @@
       <div class="row">
 
         <div class="col-md-8">
-          <h3 style="margin: auto"><strong>Seleccione el cliente</strong></h3>
+          <h3 style="margin: auto"><strong>Seleccione Cliente</strong></h3>
         </div>
 
         <div class="col-md-4">
@@ -61,7 +61,7 @@
 
               <tbody id="myTable">
                 <? while($Client = $res_C->fetchArray(SQLITE3_ASSOC)){ ?>
-                <tr onclick="setClientDataPopUp(this);">
+                <tr style="cursor: pointer" onclick="setClientDataPopUp(this);">
                     <td class="id" style="width: 10%"> <input type="hidden" name="sel_item_id" value="<?echo $Client['id_C'];?>" id="Selected_id"> <?echo $Client['id_C'];?></td>
                     <td style="width: 45%"><?echo $Client['name_C'];?></td>
                     <td style="width: 45  %">$<?echo $Client['obs_C'];?></td>

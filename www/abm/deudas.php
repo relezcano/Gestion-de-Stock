@@ -47,14 +47,106 @@
         </div>
       </div>
 
+      <!---------------------------- Modificar Deuda ------------------------------ -->
+
+      <?
+      require '../db/conexion.php';
+      $db = new MyDB('../db');
+
+      if (isset($_POST['modificar'])) {
+        if (isset($_POST['select'])) {
+
+
+          $idSel = $_POST['select'];
+
+          $sql = ("SELECT * FROM Deuda WHERE id_D = '$idSel'");
+          $ret = $db->query($sql);
+
+          while($row = $ret->fetchArray(SQLITE3_ASSOC)){
+            $id = $row['id_D'];
+            $monto = $row['monto'];
+            $idV = $row['id_V'];
+            $idC = $row['id_C'];
+
+      ?>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-6">
+            <h1 style="font-size: 37px; color: #ffffff; padding-left: 42px"><strong>Modificar Deuda</strong></h1>
+          </div>
+          <div class="col-md-5"></div>
+        </div>
+
+        <div class="formulario">
+
+          <form class="modificar" action="modificar_deuda.php" method="post">
+
+          <!-- CAMPO CON ID HIDDEN -->
+          <input type="hidden" name="id" value="<?echo $id;?>">
+
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <label style="margin-top: 5px">Monto</label>
+            </div>
+            <div class="col-md-3">
+              <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="monto" value="<?echo $monto;?>">
+            </div>
+            <div class="col-md-5"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <label style="margin-top: 5px">ID Venta</label>
+            </div>
+            <div class="col-md-3">
+              <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="id_V" value="<?echo $idV;?>">
+            </div>
+            <div class="col-md-5"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <label style="margin-top: 5px">ID Cliente</label>
+            </div>
+            <div class="col-md-3">
+              <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="id_C" value="<?echo $idC;?>">
+            </div>
+            <div class="col-md-5"></div>
+          </div>
+
+        <br>
+
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-3">
+            <button style="font-family: verdana; font-weight: bolder" type="submit" name="guardar" class="btn btn-success btn-md"><span class="glyphicon glyphicon-floppy-disk"></span><strong> GUARDAR</strong></button>
+          </div>
+          <div class="col-md-3">
+            <button style="margin-left: 30px; font-family: verdana; font-weight: bolder" type="button" name="cancelar" onclick="location.href = 'deudas.php';" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-remove"></span><strong> CANCELAR</strong></button>
+          </div>
+            <div class="col-md-3"></div>
+          </div>
+          <br>
+        </form>
+        </div>
+      </div>
+
+      <?
+          }
+        }
+      }
+      ?>
+
     <div class="row">
       <div class="col-lg-12">
         <?
 
-        require '../db/conexion.php';
-        $db = new MyDB('../db');
-
-          $sql = ("SELECT * FROM Deuda ORDER BY id_D ASC");
+          $sql = ("SELECT * FROM Deuda WHERE monto > 0 ORDER BY id_D ASC");
           $ret = $db->query($sql);
 
           ?>
@@ -86,98 +178,7 @@
       </div>
     </div>
 
-<!---------------------------- Modificar Cliente ------------------------------ -->
 
-<?
-
-if (isset($_POST['modificar'])) {
-  if (isset($_POST['select'])) {
-
-
-    $idSel = $_POST['select'];
-
-    $sql = ("SELECT * FROM Deuda WHERE id_D = '$idSel'");
-    $ret = $db->query($sql);
-
-    while($row = $ret->fetchArray(SQLITE3_ASSOC)){
-      $id = $row['id_D'];
-      $monto = $row['monto'];
-      $idV = $row['id_V'];
-      $idC = $row['id_C'];
-
-?>
-
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-6">
-      <h1 style="font-size: 37px; color: #ffffff; padding-left: 42px"><strong>Modificar Deuda</strong></h1>
-    </div>
-    <div class="col-md-5"></div>
-  </div>
-
-  <div class="formulario">
-
-    <form class="modificar" action="modificar_deuda.php" method="post">
-
-    <!-- CAMPO CON ID HIDDEN -->
-    <input type="hidden" name="id" value="<?echo $id;?>">
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">Monto</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="monto" value="<?echo $monto;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">ID Venta</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="id_V" value="<?echo $idV;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">ID Cliente</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="id_C" value="<?echo $idC;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-  <br>
-
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-3">
-      <button style="font-family: verdana; font-weight: bolder" type="submit" name="guardar" class="btn btn-success btn-md"><span class="glyphicon glyphicon-floppy-disk"></span><strong> GUARDAR</strong></button>
-    </div>
-    <div class="col-md-3">
-      <button style="margin-left: 30px; font-family: verdana; font-weight: bolder" type="button" name="cancelar" onclick="location.href = 'deudas.php';" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-remove"></span><strong> CANCELAR</strong></button>
-    </div>
-      <div class="col-md-3"></div>
-    </div>
-    <br>
-  </form>
-  </div>
-</div>
-
-<?
-    }
-  }
-}
-?>
 
 <!-------------------------- Eliminar Cliente -------------------------- -->
 

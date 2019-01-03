@@ -2,7 +2,7 @@
 require '../db/conexion.php';
 $db = new MyDB('../db');
 
-  if (isset($_POST['guardar'])) {
+  if (isset($_POST['save'])) {
 
     $id = $_POST['id_P'];
     $monto = $_POST['monto'];
@@ -11,7 +11,13 @@ $db = new MyDB('../db');
     $idP = $_POST['id_Prov2'];
     $obs = $_POST['obs_Ant'];
 
-    $update = ("UPDATE Ant_Prov SET monto = '$monto', date_Ped = '$dateP', date_Lleg = '$dateL', obs_Ant = '$obs', id_Prov2 = '$idP' WHERE id_Ant = '$id'");
+    $sql = ("SELECT * FROM Ant_Prov");
+    $ret = $db->query($sql);
+    $row = $ret->fetchArray(SQLITE3_ASSOC);
+
+    $estado = $row['estado'];
+
+    $update = ("UPDATE Ant_Prov SET monto = '$monto', date_Ped = '$dateP', date_Lleg = '$dateL', estado = '$estado', obs_Ant = '$obs', id_Prov2 = '$idP' WHERE id_Ant = '$id'");
 
     $db->exec($update);
     ?>

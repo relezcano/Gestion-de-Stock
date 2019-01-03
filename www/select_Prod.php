@@ -65,7 +65,7 @@
 
               <tbody id="myTable">
                 <? while($Prod = $res_prod->fetchArray(SQLITE3_ASSOC)){ ?>
-                <tr <? if($_GET['solicitante'] == 'ingresos'){echo "onclick='setProductVentas(this);'";}else {echo "onclick='setProductIngresos(this);'";} ?>>
+                <tr style="cursor: pointer" <? if($_GET['solicitante'] == 'ingresos'){echo "onclick='setProductVentas(this);'";}else {echo "onclick='setProductIngresos(this);'";} ?>>
                   <?
                     $id_Marca = $Prod['id_M1'];
                     $id_Tipo  = $Prod['id_T1'];

@@ -17,7 +17,7 @@ $db = new MyDB('../db');
     ?>
 
     <script>
-      window.location.replace('ventas.php');  // redireccionar a otra pagina.
+      window.location.replace('ventasGestion.php');  // redireccionar a otra pagina.
     </script>
 
     <?

@@ -158,6 +158,8 @@
                         echo "<script>alert('El DNI ingresado no existe en la base de datos... Por favor intentelo nuevamente')</script>";
                     } else {
                   ?>
+
+
               <!-- ------------------------- PAGO DEL CLIENTE -------------------------- -->
                 <br>
                   <form class="pago_deuda" action="pago_deuda.php" method="post">
@@ -179,9 +181,7 @@
                   </form>
 
                   <br>
-              <?
 
-                    ?>
                     <div class="row">
                       <div class="col-md-12">
 
@@ -321,7 +321,7 @@
 
       <div class="formulario">
 
-        <form class="modificar" action="modificar_deudor.php" method="post">
+        <form class="modificar" action="abm/modificar_deudor.php" method="post">
 
         <!-- CAMPO CON ID HIDDEN -->
         <input type="hidden" name="id" value="<?echo $id;?>">

@@ -47,12 +47,128 @@
         </div>
       </div>
 
+      <!---------------------------- Modificar Proveedor ------------------------------ -->
+
+      <?
+
+      require '../db/conexion.php';
+      $db = new MyDB('../db');
+
+      if (isset($_POST['modificar'])) {
+        if (isset($_POST['select'])) {
+
+
+          $idSel = $_POST['select'];
+
+          $sql = ("SELECT * FROM Proveedor WHERE id_Prov = '$idSel'");
+          $ret = $db->query($sql);
+
+          while($row = $ret->fetchArray(SQLITE3_ASSOC)){
+            $id = $row['id_Prov'];
+            $name = $row['name_Prov'];
+            $conc = $row['conc'];
+            $tel = $row['tel_Prov'];
+            $dir = $row['dir_Prov'];
+            $obs = $row['obs_Prov'];
+      ?>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-6">
+            <h1 style="font-size: 37px; color: #ffffff; padding-left: 42px"><strong>Modificar Proveedor</strong></h1>
+          </div>
+          <div class="col-md-5"></div>
+        </div>
+
+        <div class="formulario">
+
+          <form class="modificar" action="modificar_proveedor.php" method="post">
+
+          <!-- CAMPO CON ID HIDDEN -->
+          <input type="hidden" name="id" value="<?echo $id;?>">
+
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <label style="margin-top: 5px">Nombre</label>
+            </div>
+            <div class="col-md-3">
+              <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="name_Prov" value="<?echo $name;?>">
+            </div>
+            <div class="col-md-5"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <label style="margin-top: 5px">Concurrencia</label>
+            </div>
+            <div class="col-md-3">
+              <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="conc" value="<?echo $conc;?>">
+            </div>
+            <div class="col-md-5"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <label style="margin-top: 5px">Teléfono</label>
+            </div>
+            <div class="col-md-3">
+              <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="tel_Prov" value="<?echo $tel;?>">
+            </div>
+            <div class="col-md-5"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <label style="margin-top: 5px">Dirección</label>
+            </div>
+            <div class="col-md-3">
+              <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="dir_Prov" value="<?echo $dir;?>">
+            </div>
+            <div class="col-md-5"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <label style="margin-top: 5px">Observaciones</label>
+            </div>
+            <div class="col-md-3">
+              <textarea class="form-control" style="width: 380px" name="obs_Prov" rows="8" cols="60"><?echo $obs;?></textarea>
+            </div>
+            <div class="col-md-5"></div>
+          </div>
+
+        <br>
+
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-3">
+            <button style="font-family: verdana; font-weight: bolder" type="submit" name="guardar" class="btn btn-success btn-md"><span class="glyphicon glyphicon-floppy-disk"></span><strong> GUARDAR</strong></button>
+          </div>
+          <div class="col-md-3">
+            <button style="margin-left: 30px; font-family: verdana; font-weight: bolder" type="button" name="cancelar" onclick="location.href = 'proveedores.php';" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-remove"></span><strong> CANCELAR</strong></button>
+          </div>
+            <div class="col-md-3"></div>
+          </div>
+          <br>
+        </form>
+        </div>
+      </div>
+
+      <?
+          }
+        }
+      }
+      ?>
+
     <div class="row">
       <div class="col-lg-12">
         <?
-
-        require '../db/conexion.php';
-        $db = new MyDB('../db');
 
           $sql = ("SELECT * FROM Proveedor ORDER BY id_Prov ASC");
           $ret = $db->query($sql);
@@ -86,121 +202,7 @@
       </div>
     </div>
 
-<!---------------------------- Modificar Cliente ------------------------------ -->
 
-<?
-
-if (isset($_POST['modificar'])) {
-  if (isset($_POST['select'])) {
-
-
-    $idSel = $_POST['select'];
-
-    $sql = ("SELECT * FROM Proveedor WHERE id_Prov = '$idSel'");
-    $ret = $db->query($sql);
-
-    while($row = $ret->fetchArray(SQLITE3_ASSOC)){
-      $id = $row['id_Prov'];
-      $name = $row['name_Prov'];
-      $conc = $row['conc'];
-      $tel = $row['tel_Prov'];
-      $dir = $row['dir_Prov'];
-      $obs = $row['obs_Prov'];
-?>
-
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-6">
-      <h1 style="font-size: 37px; color: #ffffff; padding-left: 42px"><strong>Modificar Proveedor</strong></h1>
-    </div>
-    <div class="col-md-5"></div>
-  </div>
-
-  <div class="formulario">
-
-    <form class="modificar" action="modificar_proveedor.php" method="post">
-
-    <!-- CAMPO CON ID HIDDEN -->
-    <input type="hidden" name="id" value="<?echo $id;?>">
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">Nombre</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="name_Prov" value="<?echo $name;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">Concurrencia</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="conc" value="<?echo $conc;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">Teléfono</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="tel_Prov" value="<?echo $tel;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">Dirección</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="dir_Prov" value="<?echo $dir;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">Observaciones</label>
-      </div>
-      <div class="col-md-3">
-        <textarea class="form-control" style="width: 380px" name="obs_Prov" rows="8" cols="60"><?echo $obs;?></textarea>
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-  <br>
-
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-3">
-      <button style="font-family: verdana; font-weight: bolder" type="submit" name="guardar" class="btn btn-success btn-md"><span class="glyphicon glyphicon-floppy-disk"></span><strong> GUARDAR</strong></button>
-    </div>
-    <div class="col-md-3">
-      <button style="margin-left: 30px; font-family: verdana; font-weight: bolder" type="button" name="cancelar" onclick="location.href = 'proveedores.php';" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-remove"></span><strong> CANCELAR</strong></button>
-    </div>
-      <div class="col-md-3"></div>
-    </div>
-    <br>
-  </form>
-  </div>
-</div>
-
-<?
-    }
-  }
-}
-?>
 
 <!-------------------------- Eliminar Cliente -------------------------- -->
 

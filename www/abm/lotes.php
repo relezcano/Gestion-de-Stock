@@ -46,12 +46,163 @@
         </div>
       </div>
 
+      <!-- Modificar Lote -->
+      <?
+      require '../db/conexion.php';
+      $db = new MyDB('../db');
+
+      if (isset($_POST['modificar'])) {
+        if (isset($_POST['select'])) {
+
+
+          $idSel = $_POST['select'];
+
+          $sql = ("SELECT * FROM Lote WHERE id_L = '$idSel'");
+          $ret = $db->query($sql);
+
+          while($row = $ret->fetchArray(SQLITE3_ASSOC)){
+            $id = $row['id_L'];
+            $cant = $row['cant'];
+            $price = $row['price_C'];
+            $dateA = $row['date_Alt'];
+            $dateV = $row['date_Ven'];
+            $comp = $row['n_Comp'];
+            $obs = $row['obs_L'];
+            $idProd = $row['id_Prod1'];
+            $idProv = $row['id_Prov1'];
+
+
+      ?>
+
+      <div class="container-fluid" style="margin-top: 50px">
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-6" style="margin-left: 7px">
+            <h1 style="font-size: 35px; color: #ffffff; padding-left: 35px"><strong>Modificar Lote</strong></h1>
+          </div>
+          <div class="col-md-5"></div>
+        </div>
+
+        <div class="formulario">
+
+        <form class="modificar" action="modificar_lote.php" method="post" style="margin-left: 50px">
+
+          <input type="hidden" name="id_Lote" value="<?echo $id;?>">
+
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <label style="margin-top: 5px">Cantidad</label>
+            </div>
+            <div class="col-md-3">
+              <input class="form-control" style="width: 136px; margin-bottom: 5px" type="text" name="cant" value="<?echo $cant;?>">
+            </div>
+            <div class="col-md-5"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <label style="margin-top: 5px">Precio Compra</label>
+            </div>
+            <div class="col-md-3">
+              <input class="form-control" style="width: 136px; margin-bottom: 5px" type="number" name="price_C" value="<?echo $price;?>">
+            </div>
+            <div class="col-md-5"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <label style="margin-top: 5px">Fecha Alta</label>
+            </div>
+            <div class="col-md-3">
+              <input class="form-control" style="width: 160px; margin-bottom: 5px" type="text" name="date_Alt" value="<?echo $dateA;?>">
+            </div>
+            <div class="col-md-5"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <label style="margin-top: 5px">Vencimiento</label>
+            </div>
+            <div class="col-md-3">
+              <input class="form-control" style="width: 160px; margin-bottom: 5px" type="text" name="date_Ven" value="<?echo $dateV;?>">
+            </div>
+            <div class="col-md-5"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <label style="margin-top: 5px">N° Comprobante</label>
+            </div>
+            <div class="col-md-3">
+              <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="n_Comp" value="<?echo $comp;?>">
+            </div>
+            <div class="col-md-5"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <label style="margin-top: 5px">ID Producto</label>
+            </div>
+            <div class="col-md-3">
+              <input class="form-control" style="width: 100px; margin-bottom: 5px" type="number" name="id_Prod1" value="<?echo $idProd;?>">
+            </div>
+            <div class="col-md-5"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <label style="margin-top: 5px">ID Proveedor</label>
+            </div>
+            <div class="col-md-3">
+              <input class="form-control" style="width: 100px; margin-bottom: 5px" type="number" name="id_Prov1" value="<?echo $idProv;?>">
+            </div>
+            <div class="col-md-5"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <label style="margin-top: 5px">Observaciones</label>
+            </div>
+            <div class="col-md-3">
+              <textarea class="form-control" name="obs_Prod" rows="8" cols="60" style="width: 380px"><?echo $obs;?></textarea>
+            </div>
+            <div class="col-md-5"></div>
+          </div>
+
+          <br>
+
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+              <button style="font-family: verdana; font-weight: bolder" type="submit" name="guardar" class="btn btn-success btn-md"><span class="glyphicon glyphicon-floppy-disk"></span><strong> GUARDAR</strong></button>
+            </div>
+            <div class="col-md-3">
+              <button style="margin-left: 30px; font-family: verdana; font-weight: bolder" type="button" name="cancelar" onclick="location.href = 'lotes.php';" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-remove"></span><strong> CANCELAR</strong></button>
+            </div>
+              <div class="col-md-3"></div>
+            </div>
+          </form>
+          </div>
+      <br><br>
+      <?
+
+        }
+      }
+      }
+      ?>
+
+
     <div class="row">
       <div class="col-lg-12">
         <?
-
-        require '../db/conexion.php';
-        $db = new MyDB('../db');
 
           $sql = ("SELECT * FROM Lote ORDER BY id_L ASC");
           $ret = $db->query($sql);
@@ -95,155 +246,6 @@
       </div>
     </div>
 
-<!-- Modificar Cliente -->
-<?
-if (isset($_POST['modificar'])) {
-  if (isset($_POST['select'])) {
-
-
-    $idSel = $_POST['select'];
-
-    $sql = ("SELECT * FROM Lote WHERE id_L = '$idSel'");
-    $ret = $db->query($sql);
-
-    while($row = $ret->fetchArray(SQLITE3_ASSOC)){
-      $id = $row['id_L'];
-      $cant = $row['cant'];
-      $price = $row['price_C'];
-      $dateA = $row['date_Alt'];
-      $dateV = $row['date_Ven'];
-      $comp = $row['n_Comp'];
-      $obs = $row['obs_L'];
-      $idProd = $row['id_Prod1'];
-      $idProv = $row['id_Prov1'];
-
-
-?>
-
-<div class="container-fluid" style="margin-top: 50px">
-  <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-6" style="margin-left: 7px">
-      <h1 style="font-size: 35px; color: #ffffff; padding-left: 35px"><strong>Modificar Lote</strong></h1>
-    </div>
-    <div class="col-md-5"></div>
-  </div>
-
-  <div class="formulario">
-
-  <form class="modificar" action="modificar_lote.php" method="post" style="margin-left: 50px">
-
-    <input type="hidden" name="id_Lote" value="<?echo $id;?>">
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">Cantidad</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 136px; margin-bottom: 5px" type="text" name="cant" value="<?echo $cant;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">Precio Compra</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 136px; margin-bottom: 5px" type="number" name="price_C" value="<?echo $price;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">Fecha Alta</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 160px; margin-bottom: 5px" type="text" name="date_Alt" value="<?echo $dateA;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">Vencimiento</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 160px; margin-bottom: 5px" type="text" name="date_Ven" value="<?echo $dateV;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">N° Comprobante</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="n_Comp" value="<?echo $comp;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">ID Producto</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 100px; margin-bottom: 5px" type="number" name="id_Prod1" value="<?echo $idProd;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">ID Proveedor</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 100px; margin-bottom: 5px" type="number" name="id_Prov1" value="<?echo $idProv;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">Observaciones</label>
-      </div>
-      <div class="col-md-3">
-        <textarea class="form-control" name="obs_Prod" rows="8" cols="60" style="width: 380px"><?echo $obs;?></textarea>
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <br>
-
-    <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-3">
-        <button style="font-family: verdana; font-weight: bolder" type="submit" name="guardar" class="btn btn-success btn-md"><span class="glyphicon glyphicon-floppy-disk"></span><strong> GUARDAR</strong></button>
-      </div>
-      <div class="col-md-3">
-        <button style="margin-left: 30px; font-family: verdana; font-weight: bolder" type="button" name="cancelar" onclick="location.href = 'lotes.php';" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-remove"></span><strong> CANCELAR</strong></button>
-      </div>
-        <div class="col-md-3"></div>
-      </div>
-    </form>
-    </div>
-<br><br>
-<?
-
-  }
-}
-}
-?>
 
 <!-- Eliminar Cliente -->
 

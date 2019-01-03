@@ -95,7 +95,6 @@ session_start();
 
     <?
 
-
     if (isset($_POST['cambiar'])) {
       if (($_POST['id'] == "" || $_POST['admin'] == "")) {
         ?><script>

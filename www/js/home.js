@@ -54,9 +54,9 @@ setInterval(function(){
 //Si el proveedor no llego en fecha, el usuario puede hacer click en el aviso y modificar la fecha de llegada del proveedor. Se abre una ventana popup para modificar el anticipo.
 function popUpModAnt(w) {
 
-  var id_Ant = $(w).find("input[name='id_Ant']").val();
+  //var id_Ant = $(w).find("input[name='id_Ant']").val();  // Lo comenté porque no me permitía modificar los pedidos. Al intentar modificar cualquier pedido este quedaba igual que como estaba. 
 
-  window.open('abm/pedidos.php/?idAnt='+id_Ant);  //MODIFICAR ESTO! No debe redireccionar a Lotes.php sino a Anticipos.php
+  window.open('../abm/pedidos.php');  //MODIFICAR ESTO! No debe redireccionar a Lotes.php sino a Anticipos.php
 
 }
 
@@ -73,19 +73,19 @@ function navBar(){
   }
 
 //Conjunto de funciones para deshabilitar el boton derecho.
-// var isNS = (navigator.appName == "Netscape") ? 1 : 0;
-//
-// if(navigator.appName == "Netscape") document.captureEvents(Event.MOUSEDOWN||Event.MOUSEUP);
-//
-// function mischandler(){
-// return false;
-// }
-//
-// function mousehandler(e){
-// var myevent = (isNS) ? e : event;
-// var eventbutton = (isNS) ? myevent.which : myevent.button;
-// if((eventbutton==2)||(eventbutton==3)) return false;
-// }
-// document.oncontextmenu = mischandler;
-// document.onmousedown = mousehandler;
-// document.onmouseup = mousehandler;
+var isNS = (navigator.appName == "Netscape") ? 1 : 0;
+
+if(navigator.appName == "Netscape") document.captureEvents(Event.MOUSEDOWN||Event.MOUSEUP);
+
+function mischandler(){
+return false;
+}
+
+function mousehandler(e){
+var myevent = (isNS) ? e : event;
+var eventbutton = (isNS) ? myevent.which : myevent.button;
+if((eventbutton==2)||(eventbutton==3)) return false;
+}
+document.oncontextmenu = mischandler;
+document.onmousedown = mousehandler;
+document.onmouseup = mousehandler;

@@ -43,7 +43,7 @@
       echo "<p>Ayer debio haber pasado $name_Prov ¿Paso?</p>";
       echo "<p>Tel.: $tel_Prov</p>";
       echo "<p>Dirección: $dir_Prov</p>";
-      echo "<p>¿Quiere modificar la fecha? Haga click aqui.</p>";
+      echo "<a style='cursor: pointer; color: #ccffcc'><STRONG>¿Quiere modificar la fecha? Haga click aquí.</STRONG></a>";
       echo "<input type='hidden' name='id_Ant' value='$id_Ant'>";
       echo "</div>";
     }

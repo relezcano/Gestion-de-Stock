@@ -23,7 +23,7 @@
           <button type="button" name="agregar" class="btn btn-primary" onclick="location.href = 'nueva_venta.php';"><strong><span class="glyphicon glyphicon-plus"></span> Nueva Venta</strong></button>
         </div>
 
-        <form class="btnmodificar" action="ventas.php" method="post">
+        <form class="btnmodificar" action="ventasGestion.php" method="post">
         <div class="col-md-2">
           <button style="margin-left: 10px" type="submit" name="modificar" class="btn btn-warning"><strong><span class="glyphicon glyphicon-pencil"></span> Modificar Venta</strong></button>
         </div>
@@ -32,7 +32,7 @@
           </div>
         </form>
 
-        <form class="eliminar" action="ventas.php" method="post">
+        <form class="eliminar" action="ventasGestion.php" method="post">
           <div class="col-md-2">
             <button style="margin-left: 10px" type="submit" name="eliminar" class="btn btn-danger"><strong><span class="glyphicon glyphicon-trash"></span> Eliminar Venta</strong></button>
           </div>
@@ -46,12 +46,127 @@
         </div>
       </div>
 
+      <!-- Modificar Venta -->
+      <?
+      require '../db/conexion.php';
+      $db = new MyDB('../db');
+
+      if (isset($_POST['modificar'])) {
+        if (isset($_POST['select'])) {
+
+
+          $idSel = $_POST['select'];
+
+          $sql = ("SELECT * FROM Venta WHERE id_V = '$idSel'");
+          $ret = $db->query($sql);
+
+          while($row = $ret->fetchArray(SQLITE3_ASSOC)){
+            $id = $row['id_V'];
+            $date = $row['date_V'];
+            $priceT = $row['price_Total'];
+            $priceP = $row['price_Pago'];
+            $obs = $row['obs_V'];
+            $idC = $row['id_C1'];
+
+      ?>
+
+      <div class="container-fluid" style="margin-top: 50px">
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-6" style="margin-left: 7px">
+            <h1 style="font-size: 35px; color: #ffffff; padding-left: 35px"><strong>Modificar Venta</strong></h1>
+          </div>
+          <div class="col-md-5"></div>
+        </div>
+
+        <div class="formulario">
+
+        <form class="modificar" action="modificar_venta.php" method="post" style="margin-left: 50px">
+
+          <input type="hidden" name="id_V" value="<?echo $id;?>">
+
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <label style="margin-top: 5px">Fecha Venta</label>
+            </div>
+            <div class="col-md-3">
+              <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="date_V" value="<?echo $date;?>">
+            </div>
+            <div class="col-md-5"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <label style="margin-top: 5px">Valor Total</label>
+            </div>
+            <div class="col-md-3">
+              <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="price_Total" value="<?echo $priceT;?>">
+            </div>
+            <div class="col-md-5"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <label style="margin-top: 5px">Valor Pago</label>
+            </div>
+            <div class="col-md-3">
+              <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="price_Pago" value="<?echo $priceP;?>">
+            </div>
+            <div class="col-md-5"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <label style="margin-top: 5px">ID Cliente</label>
+            </div>
+            <div class="col-md-3">
+              <input class="form-control" style="width: 90px; margin-bottom: 5px" type="text" name="id_C1" value="<?echo $idC;?>">
+            </div>
+            <div class="col-md-5"></div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <label style="margin-top: 5px">Detalles de la Venta</label>
+            </div>
+            <div class="col-md-3">
+              <textarea class="form-control" name="obs_V" rows="8" cols="60" style="width: 380px"><?echo $obs;?></textarea>
+            </div>
+            <div class="col-md-5"></div>
+          </div>
+
+          <br>
+
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+              <button style="font-family: verdana; font-weight: bolder" type="submit" name="guardar" class="btn btn-success btn-md"><span class="glyphicon glyphicon-floppy-disk"></span><strong> GUARDAR</strong></button>
+            </div>
+            <div class="col-md-3">
+              <button style="margin-left: 30px; font-family: verdana; font-weight: bolder" type="button" name="cancelar" onclick="location.href = 'ventasGestion.php';" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-remove"></span><strong> CANCELAR</strong></button>
+            </div>
+              <div class="col-md-3"></div>
+            </div>
+          </form>
+          </div>
+      <br><br>
+      <?
+
+        }
+      }
+      }
+      ?>
+
+
     <div class="row">
       <div class="col-lg-12">
         <?
-
-        require '../db/conexion.php';
-        $db = new MyDB('../db');
 
           $sql = ("SELECT * FROM Venta ORDER BY id_V ASC");
           $ret = $db->query($sql);
@@ -89,119 +204,6 @@
       </div>
     </div>
 
-<!-- Modificar Venta -->
-<?
-if (isset($_POST['modificar'])) {
-  if (isset($_POST['select'])) {
-
-
-    $idSel = $_POST['select'];
-
-    $sql = ("SELECT * FROM Venta WHERE id_V = '$idSel'");
-    $ret = $db->query($sql);
-
-    while($row = $ret->fetchArray(SQLITE3_ASSOC)){
-      $id = $row['id_V'];
-      $date = $row['date_V'];
-      $priceT = $row['price_Total'];
-      $priceP = $row['price_Pago'];
-      $obs = $row['obs_V'];
-      $idC = $row['id_C1'];
-
-?>
-
-<div class="container-fluid" style="margin-top: 50px">
-  <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-6" style="margin-left: 7px">
-      <h1 style="font-size: 35px; color: #ffffff; padding-left: 35px"><strong>Modificar Venta</strong></h1>
-    </div>
-    <div class="col-md-5"></div>
-  </div>
-
-  <div class="formulario">
-
-  <form class="modificar" action="modificar_venta.php" method="post" style="margin-left: 50px">
-
-    <input type="hidden" name="id_V" value="<?echo $id;?>">
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">Fecha Venta</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="date_V" value="<?echo $date;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">Valor Total</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="price_Total" value="<?echo $priceT;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">Valor Pago</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 210px; margin-bottom: 5px" type="text" name="price_Pago" value="<?echo $priceP;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">ID Cliente</label>
-      </div>
-      <div class="col-md-3">
-        <input class="form-control" style="width: 90px; margin-bottom: 5px" type="text" name="id_C1" value="<?echo $idC;?>">
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-3">
-        <label style="margin-top: 5px">Detalles de la Venta</label>
-      </div>
-      <div class="col-md-3">
-        <textarea class="form-control" name="obs_V" rows="8" cols="60" style="width: 380px"><?echo $obs;?></textarea>
-      </div>
-      <div class="col-md-5"></div>
-    </div>
-
-    <br>
-
-    <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-3">
-        <button style="font-family: verdana; font-weight: bolder" type="submit" name="guardar" class="btn btn-success btn-md"><span class="glyphicon glyphicon-floppy-disk"></span><strong> GUARDAR</strong></button>
-      </div>
-      <div class="col-md-3">
-        <button style="margin-left: 30px; font-family: verdana; font-weight: bolder" type="button" name="cancelar" onclick="location.href = 'ventas.php';" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-remove"></span><strong> CANCELAR</strong></button>
-      </div>
-        <div class="col-md-3"></div>
-      </div>
-    </form>
-    </div>
-<br><br>
-<?
-
-  }
-}
-}
-?>
 
 <!-- Eliminar Pedido -->
 
@@ -215,7 +217,7 @@ if (isset($_POST['modificar'])) {
       echo "Venta eliminada exitosamente!!!";
 
       ?><script>
-        window.location.replace('ventas.php');  // redireccionar a otra pagina.
+        window.location.replace('ventasGestion.php');  // redireccionar a otra pagina.
       </script><?
 
     } else {
