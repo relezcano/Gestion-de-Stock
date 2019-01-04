@@ -64,7 +64,7 @@
                 <tr style="cursor: pointer" onclick="setClientDataPopUp(this);">
                     <td class="id" style="width: 10%"> <input type="hidden" name="sel_item_id" value="<?echo $Client['id_C'];?>" id="Selected_id"> <?echo $Client['id_C'];?></td>
                     <td style="width: 45%"><?echo $Client['name_C'];?></td>
-                    <td style="width: 45  %">$<?echo $Client['obs_C'];?></td>
+                    <td style="width: 45  %"><?echo $Client['obs_C'];?></td>
                 </tr>
                 <?}?>
               </tbody>
