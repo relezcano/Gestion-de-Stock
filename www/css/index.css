@@ -32,3 +32,25 @@ p {
   font-size: 18px;
   font-family: arial;
 }
+
+.centrado {
+  float: none;
+  margin: 0 auto;
+}
+
+#centrador{
+  position: relative;
+  width: auto;
+  height: auto;
+
+}
+
+#imagen{
+    position: absolute;
+    width: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}

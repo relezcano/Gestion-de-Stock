@@ -20,13 +20,13 @@ session_start();
   </head>
   <body>
 
-    <div class="container-fluid" style="margin-top: 75px; margin-right: 130px">
+    <div class="container-fluid" style="margin-top: 35px">
 
       <!-- Logo de Elephant -->
 
       <div class="row">
-        <div class="col-sm-12" style="padding-left: 548px">
-          <img src="img/elephant2.png"  height="350" alt="logo">
+        <div id="centrador">
+          <img id="imagen" src="img/elephant2.png"  height="350" alt="logo" style="margin-top: 20px">
         </div>
       </div>
 
@@ -35,8 +35,8 @@ session_start();
       <!-- Texto logo Elephant -->
 
       <div class="row">
-        <div class="col-sm-12" style="margin-top: -35px; padding-left: 450px">
-          <img src="img/logo_elephant.png"  height="150" alt="logo">
+        <div id="centrador">
+          <img id="imagen" src="img/logo_elephant.png"  height="150" alt="logo" style="margin-top: 350px">
         </div>
       </div>
 
@@ -44,17 +44,17 @@ session_start();
 
       <!-- Formulario de ingreso -->
 
-      <form class="login" style="margin-top: -60px; margin-left: 42px" action="index.php" method="post">
+      <form class="login" style="margin-top: 430px;" action="index.php" method="post">
 
         <!-- Input del Username -->
         <div class="row">
           <div class="col-sm-3"></div>
 
           <div class="col-sm-2">
-            <label style="margin-top: 5px"><span style="padding-left: 230px" class="glyphicon glyphicon-user"></span></label>
+            <label style="margin-top: 5px"><span style="padding-left: 210px" class="glyphicon glyphicon-user"></span></label>
           </div>
 
-          <div class="col-sm-7" style="padding-left: 60px">
+          <div class="col-sm-7" style="padding-left: 45px">
             <input class="form-control" style="width: 220px" type="text" name="user" placeholder="Ingrese su usuario">
           </div>
         </div>
@@ -64,10 +64,10 @@ session_start();
           <div class="col-sm-3"></div>
 
           <div class="col-sm-2">
-            <label style="margin-top: 8px"><span style="padding-left: 230px" class="glyphicon glyphicon-wrench"></span></label>
+            <label style="margin-top: 8px"><span style="padding-left: 210px" class="glyphicon glyphicon-wrench"></span></label>
           </div>
 
-          <div class="col-sm-7" style="padding-left: 60px">
+          <div class="col-sm-7" style="padding-left: 45px">
             <input class="form-control" style="width: 220px; margin-top: 5px" type="password" name="pass" placeholder="Ingrese su contraseña">
           </div>
         </div>
@@ -78,7 +78,7 @@ session_start();
         <div class="row">
           <div class="col-sm-5"></div>
 
-          <div class="col-sm-3" style="padding-left: 95px">
+          <div class="col-sm-3" style="padding-left: 75px">
             <button style="font-family: verdana; font-weight: bolder" type="submit" name="ingresar" class="btn btn-warning btn-md"><span class="glyphicon glyphicon-log-in"></span><strong> INGRESAR</strong></button>
           </div>
 
