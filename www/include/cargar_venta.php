@@ -11,7 +11,7 @@
     $resMaxId_V   = $db->query($getId_V);
     $maxId_V      = $resMaxId_V->fetchArray(SQLITE3_ASSOC);
     if(isset($maxId_V)){
-      $id_V = intval($maxId_V)+1;
+      $id_V = intval(implode(" ", $maxId_V))+1;
     }else{
       $id_V = 0;
     }

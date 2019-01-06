@@ -12,12 +12,31 @@
   $resProv = $db->query($sqlProv);
 
   //Se traen los parametros del dia de ayer y el de mañana.
-  $yesterday = $_GET['yesterday'];
-  $tomorrow = $_GET['tomorrow'];
+    $yearMonth  = $_GET['yearMonth'];
+    $day        = $_GET['day'];
+
+    $yesterday  =$day-1;
+    if($yesterday<10){
+      $yesterday = $yearMonth."-0".$yesterday;
+    }else {
+      $yesterday = $yearMonth.$yesterday;
+    }
+    $tomorrow   = $day+1;
+    if ($tomorrow<10) {
+      $tomorrow = $yearMonth."-0".$tomorrow;
+    }else{
+      $tomorrow = $yearMonth.$tomorrow;
+    }
+    $today   = $day;
+    if ($today<10) {
+      $today = $yearMonth."-0".$today;
+    }else{
+      $today = $yearMonth.$today;
+    }
 
   //Se agrega el titulo para que no desaparesca.
   echo "<div id='intDashboard'>";
-  echo "<h3><strong>Proveedores</strong></h3>";
+  echo "<h3 style='text-align: center; font-size: 36px; padding-bottom: 10px'><strong>Proveedores</strong></h3>";
   echo "</div>";
 
   //Se hace una iteracion por todos los anticipos que existen.
@@ -34,13 +53,19 @@
     //Si el proveedor llega mañana se le avisa al usuario la cantidad de plata que debe guardar y el nombre del proveedor que va a venir.
     if($Ant['date_Lleg'] == $tomorrow){
       echo "<div id='alrtProv'>";
-      echo "<p>Mañana viene $name_Prov</p>";
+      echo "<p style='font-size: 16px'><strong>Mañana viene $name_Prov</strong></p>";
+      echo "<p>Se le debe entregar $$monto";
+      echo "</div>";
+    } //Si el proveedor llega hoy se le avisa al usuario la cantidad de plata que debe guardar y el nombre del proveedor que va a venir.
+    elseif ($Ant['date_Lleg'] == $today) {
+      echo "<div id='alrtProv'>";
+      echo "<p style='font-size: 16px'><strong>Hoy viene $name_Prov</strong></p>";
       echo "<p>Se le debe entregar $$monto";
       echo "</div>";
     } //Si el proveedor deberia haber llegado ayer se le da la opcion al usuario de cambiar la fecha del anticipo.
     elseif ($Ant['date_Lleg'] == $yesterday) {
       echo "<div id='alrtProv' onClick='popUpModAnt(this)'>";
-      echo "<p>Ayer debio haber pasado $name_Prov ¿Paso?</p>";
+      echo "<p style='font-size: 16px'><strong>Ayer debió haber pasado $name_Prov ¿Paso?</strong></p>";
       echo "<p>Tel.: $tel_Prov</p>";
       echo "<p>Dirección: $dir_Prov</p>";
       echo "<a style='cursor: pointer; color: #ccffcc'><STRONG>¿Quiere modificar la fecha? Haga click aquí.</STRONG></a>";

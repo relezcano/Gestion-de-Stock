@@ -41,7 +41,7 @@ session_start();
 
     ?>
 
-    <div class="conteinter-fluid" id="main">
+    <div class="conteinter-fluid" id="main" style="margin-top: 20px">
   <?
       if ($admin == 1) {
 ?>
@@ -76,18 +76,20 @@ session_start();
           <br>
     <?}?>
 
-      <div class="col-md-4" id="DashboardProd">
+      <div class="col-md-4" id="DashboardProd" style="margin-bottom: 150px">
         <div id="intDashboard">
 
-        <h3><strong>Productos</strong></h3>
+        <h3 style="text-align: center; font-size: 36px; padding-bottom: 10px"><strong>Productos</strong></h3>
 
         </div>
       </div>
+
       <div class="col-md-4"></div>
-      <div class="col-md-4" id="DashboardProv">
+
+      <div class="col-md-4" id="DashboardProv" style="margin-bottom: 150px">
         <div id="intDashboard">
 
-        <h3><strong>Proveedores</strong></h3>
+        <h3 style="text-align: center; font-size: 36px; padding-bottom: 10px"><strong>Proveedores</strong></h3>
 
         </div>
       </div>

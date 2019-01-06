@@ -165,6 +165,8 @@
 			$idTipo = $_POST['tipo'];
 			$checkmar = $_POST['checkmar'];
 			$checktipo = $_POST['checktipo'];
+			$cant_rep = 50;
+			$estado = "A";
 
 
 			if (isset($checkmar)) {
@@ -185,7 +187,7 @@
 					$rowT = $retT->fetchArray(SQLITE3_ASSOC);
 					$idTip = $rowT['id_T'];
 
-					$query = "INSERT INTO Producto (name_Prod, u_Med, price_V, obs_Prod, id_M1, id_T1) VALUES ('$name', '$medida', '$precio', '$obs', '$idMar', '$idTip')";
+					$query = "INSERT INTO Producto (name_Prod, u_Med, cant_Rep, price_V, obs_Prod, id_M1, id_T1, estado) VALUES ('$name', '$medida', '$cant_rep', '$precio', '$obs', '$idMar', '$idTip', '$estado')";
 
 					$db->exec($query);
 
@@ -201,7 +203,7 @@
 
 				} else {
 
-					$query = "INSERT INTO Producto (name_Prod, u_Med, price_V, obs_Prod, id_M1, id_T1) VALUES ('$name', '$medida', '$precio', '$obs', '$idMar', '$idTipo')";
+					$query = "INSERT INTO Producto (name_Prod, u_Med, cant_Rep, price_V, obs_Prod, id_M1, id_T1, estado) VALUES ('$name', '$medida', '$cant_rep', '$precio', '$obs', '$idMar', '$idTipo', '$estado')";
 
 					$db->exec($query);
 
@@ -227,7 +229,7 @@
 					$rowT = $retT->fetchArray(SQLITE3_ASSOC);
 					$idTip = $rowT['id_T'];
 
-					$query = "INSERT INTO Producto (name_Prod, u_Med, price_V, obs_Prod, id_M1, id_T1) VALUES ('$name', '$medida', '$precio', '$obs', '$idMarca', '$idTip')";
+					$query = "INSERT INTO Producto (name_Prod, u_Med, cant_Rep, price_V, obs_Prod, id_M1, id_T1, estado) VALUES ('$name', '$medida', '$cant_rep', '$precio', '$obs', '$idMarca', '$idTip', '$estado')";
 
 					$db->exec($query);
 
@@ -247,7 +249,7 @@
 
 			if ($checkmar == "" && $checktipo == "") {
 
-				$query = "INSERT INTO Producto (name_Prod, u_Med, price_V, obs_Prod, id_M1, id_T1) VALUES ('$name', '$medida', '$precio', '$obs', '$idMarca', '$idTipo')";
+				$query = "INSERT INTO Producto (name_Prod, u_Med, cant_Rep, price_V, obs_Prod, id_M1, id_T1, estado) VALUES ('$name', '$medida', '$cant_rep', '$precio', '$obs', '$idMarca', '$idTipo', '$estado')";
 
 				$db->exec($query);
 

@@ -61,7 +61,7 @@
 
               <tbody id="myTable">
                 <? while($Prov = $res_C->fetchArray(SQLITE3_ASSOC)){ ?>
-                <tr onclick="setProvDataPopUp(this);">
+                <tr style="cursor: pointer" onclick="setProvDataPopUp(this);">
                     <td class="id" style="width: 10%"> <input type="hidden" name="sel_prov_id" value="<?echo $Prov['id_Prov'];?>" id="Selected_id"> <?echo $Prov['id_Prov'];?></td>
                     <td style="width: 45%"><?echo $Prov['name_Prov'];?></td>
                     <td style="width: 45%"><?echo $Prov['obs_Prov'];?></td>

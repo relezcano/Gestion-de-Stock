@@ -31,7 +31,7 @@
         <div id="bottomDiv">
           <div class="row" style="float: left; width: 100%; margin-bottom: 5px; margin-top: 10px">
             <div class="col-md-6">
-              <label onclick="window.open('select_Prov.php');"><strong>Proveedor: </strong></label>
+              <label style="cursor: pointer" onclick="window.open('select_Prov.php');"><strong>Proveedor: </strong></label>
               <input type="text" name="Prov" placeholder=" Ingrese id del proveedor" style="width: 165px; color: black; border-radius: 30px; height: 30px" onkeyup="setProvDataParent(this);" onkeypress="return restrictCharacters(this, event, digitos)">
 
               <div id="provData" style="margin-left: 0px">

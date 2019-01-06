@@ -32,7 +32,7 @@
           </div>
         </form>
 
-        <form class="eliminar" action="productos.php" method="post">
+        <form class="eliminar" action="lotes.php" method="post">
           <div class="col-md-2">
             <button type="submit" name="eliminar" class="btn btn-danger" style="margin-left: 15px"><strong><span class="glyphicon glyphicon-trash"></span> Eliminar Lote</strong></button>
           </div>
@@ -247,7 +247,7 @@
     </div>
 
 
-<!-- Eliminar Cliente -->
+<!-- Eliminar Lote -->
 
 <?
   if(isset($_POST['eliminar'])){

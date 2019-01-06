@@ -63,7 +63,7 @@
 
               <tbody id="myTable">
                 <? while($Ant_Prov = $res_Ant->fetchArray(SQLITE3_ASSOC)){ ?>
-                <tr onclick="setAntPopUp(this);">
+                <tr style="cursor: pointer" onclick="setAntPopUp(this);">
                     <td class="id" style="width: 10%"> <input type="hidden" name="sel_ant_id" value="<?echo $Ant_Prov['id_Ant'];?>"> <?echo $Ant_Prov['id_Ant'];?></td>
                     <td style="width: 30%"><?echo $Ant_Prov['name_Prov'];?></td>
                     <td style="width: 20%"><?echo $Ant_Prov['date_Ped'];?></td>

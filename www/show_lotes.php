@@ -58,7 +58,7 @@
                     <th style="text-align: center" scope="col">Producto</th>
                     <th style="text-align: center" scope="col">Precio Compra</th>
                     <th style="text-align: center" scope="col">Cantidad</th>
-                    <th style="text-align: center" scope="col">Fecha Alta</th>
+                    <th style="text-align: center; width: 100px" scope="col">Fecha Alta</th>
                     <th style="text-align: center" scope="col">Fecha Vencimiento</th>
                     <th style="text-align: center" scope="col">Observaciones</th>
 
@@ -77,8 +77,10 @@
                         <td><?echo $row['name_Prod'];?></td>
                         <td><?echo '$'.$row['price_C'];?></td>
                         <td><?echo $row['cant'];?></td>
-                        <td><?echo $row['date_Alt'];?></td>
-                        <td><?echo $row['date_Ven'];?></td>
+                        <td><?$fechaAlt = date_format(date_create_from_format('Y-m-d', $row['date_Alt']), 'd-m-Y');
+                        echo $fechaAlt;?></td>
+                        <td><?$fechaVen = date_format(date_create_from_format('Y-m-d', $row['date_Ven']), 'd-m-Y');
+                        echo $fechaVen;?></td>
                         <td><?echo $row['obs_L'];?></td>
 
                     </tr>

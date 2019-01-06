@@ -51,11 +51,15 @@
       require '../db/conexion.php';
       $db = new MyDB('../db');
 
-      if (isset($_POST['modificar'])) {
-        if (isset($_POST['select'])) {
+      if (isset($_POST['modificar']) || isset($_GET['idAnt'])) {
 
+        if (isset($_POST['select']) || isset($_GET['idAnt'])) {
 
-          $idSel = $_POST['select'];
+          if(isset($_GET['idAnt'])){
+            $idSel = $_GET['idAnt'];
+          }else{
+            $idSel = $_POST['select'];
+          }
 
           $sql = ("SELECT * FROM Ant_Prov WHERE id_Ant = '$idSel'");
           $ret = $db->query($sql);
@@ -163,6 +167,7 @@
         }
       }
       }
+
       ?>
 
     <div class="row">

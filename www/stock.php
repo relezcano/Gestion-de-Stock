@@ -68,7 +68,7 @@
                       $resLote = $db->query($queryLote);
                       $rowL = $resLote -> fetchArray(SQLITE3_ASSOC);
                     ?>
-                    <tr onclick="showLote(this);">
+                    <tr style="cursor: pointer" onclick="showLote(this);">
 
                       <input type="hidden" name="idProd" value="<?echo $id_Prod;?>">
                         <td><?echo $row['name_Prod'];?></td>

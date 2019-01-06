@@ -14,7 +14,7 @@
 
   //Se agrega nuevamente el titulo para que no desaparesca.
   echo "<div id='intDashboard'>";
-  echo "<h3><strong>Productos</strong></h3>";
+  echo "<h3 style='text-align: center; font-size: 36px; padding-bottom: 10px'><strong>Productos</strong></h3>";
   echo "</div>";
 
   //Se hace una iteracion entre todos los productos para buscar cual esta en cantidad critica.
@@ -37,7 +37,7 @@
     //Si el stock es menor a la cantidad critica, se muestra el nombre del producto y la cantidad que queda.
     if($Lote['SUM(cant)'] < $Prod['cant_Rep'] && $Prod['estado'] == 'A'){
       echo "<div id='alrtProd'>";
-      echo "<p>$name_Prod: Quedan $CantSumLote</p>";
+      echo "<p style='font-size: 16px'><strong>$name_Prod: Quedan $CantSumLote</strong></p>";
       echo "</div>";
     }
   }

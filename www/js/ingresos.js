@@ -5,7 +5,7 @@ var num_item = 1;
 function addProd(){
   num_item++;
 
-  $("#myTable").append('<tr id="tr'+num_item+'"><td style="width: 70px" id="numOfRow">'+num_item+'</td><td style="width: 250px"><input type="hidden" name="id_product'+num_item+'" value="" id="'+num_item+'"><span id="Prod_name" onclick="popUpWin(this);">Seleccionar producto</span></td><td><span>$-</span></td><td style="width: 100px">-</td><td style="width: 100px">-</td><td></td><td style="width: 50px"><button type="button" name="deleteRow" class="btn btn-danger" style="border-radius: 5px; width: 40px; height: 20px"><span class="glyphicon glyphicon-minus" style="float: inherit" onclick="deleteProd(this);"></span></button></td><input type="hidden" name="id_prod" value="none"></tr>');
+  $("#myTable").append('<tr id="tr'+num_item+'"><td style="width: 70px" id="numOfRow">'+num_item+'</td><td style="width: 250px; cursor: pointer"><input type="hidden" name="id_product'+num_item+'" value="" id="'+num_item+'"><span id="Prod_name" onclick="popUpWin(this);">Seleccionar producto</span></td><td><span>$-</span></td><td style="width: 100px">-</td><td style="width: 100px">-</td><td></td><td style="width: 50px"><button type="button" name="deleteRow" class="btn btn-danger" style="border-radius: 5px; width: 40px; height: 20px"><span class="glyphicon glyphicon-minus" style="float: inherit" onclick="deleteProd(this);"></span></button></td><input type="hidden" name="id_prod" value="none"></tr>');
 
 }
 
@@ -189,7 +189,7 @@ function endLote(action){
     var id_Ant        = $(document).find("input[name='id_Ant']").val();
 
     //Se hace una variable para almacenar la query que se ejecutara.
-    var query         = "INSERT INTO Lote (cant, price_C, date_Alt, date_Ven, n_Comp, obs_L, id_Prod1, id_Prov1) VALUES ";
+    var query         = "INSERT INTO Lote (cant, bultos, price_C, date_Alt, date_Ven, n_Comp, obs_L, id_Prod1, id_Prov1) VALUES ";
 
     //Se hace una iteracion por cada fila de la tabla para extraer los datos especificos de cada lote.
     for(var   i = 0; i < numRows; i++){
@@ -197,11 +197,12 @@ function endLote(action){
       var price_C     = $(document.getElementById("myTable").rows[i]).find("input[name='price_C_prod']").val();
       var date_Ven    = $(document.getElementById("myTable").rows[i]).find("input[name='date_Ven_prod']").val();
       var id_Prod1    = $(document.getElementById("myTable").rows[i]).find("input[name='id_prod']").val();
+      var bultos      = $(document.getElementById("myTable").rows[i]).find("input[name='cant_bultos']").val();
 
       //Se agregan los datos de cada lote que se quiere cargar a la query
-      if((cant != "" && price_C != "" && date_Ven != "") && (cant != undefined && price_C != undefined && date_Ven != undefined)){
+      if((cant != "" && price_C != "" && date_Ven != "" && bultos != "") && (cant != undefined && price_C != undefined && date_Ven != undefined && bultos != undefined)){
 
-          query = query + "('"+cant+"', '"+price_C+"', '"+date_Alt+"', '"+date_Ven+"', '"+n_Comp+"', '"+obs_L+"', '"+id_Prod1+"', '"+id_Prov1+"')";
+          query = query + "('"+cant+"', '"+bultos+"', '"+price_C+"', '"+date_Alt+"', '"+date_Ven+"', '"+n_Comp+"', '"+obs_L+"', '"+id_Prod1+"', '"+id_Prov1+"')";
 
           //Si aun faltan datos por cargar, se agrega una coma y un espacio, caso contrario se agrega un ";".
           if (i != numRows-1){
@@ -219,6 +220,7 @@ function endLote(action){
     if(n_Comp != "" && (id_Prov1 != null || id_Prov1 != "") && numRows != 0){
       var loadConf = confirm("\t¿Esta seguro que desea ingresar los productos?\t");
       if(loadConf == true){
+        //Se modifica el estado del Anticipo de proveedor (Si existe alguno relacionadao) a "R" de Recibido.
         $.ajax({
           url: '../include/change_ant.php',
           data: {idAnt: id_Ant}
@@ -229,6 +231,7 @@ function endLote(action){
           url: '../include/cargar_lote.php',
           data: {query: query},
           success: function(data){
+            console.log(data);
             if(data == '100'){
               alert("\tSe ha cargado la mercaderia exitosamente\t");
 
@@ -236,18 +239,9 @@ function endLote(action){
               var printLabel = confirm("\t¿Desea imprimir las etiquetas para los lotes?\t");
               if(printLabel == true){
 
-                var bultos = [];
-
-                for (var   j = 0; j < numRows; j++){
-
-                  var actBulto = $(document.getElementById("myTable").rows[j]).find("input[name='cant_bultos']").val();
-                  bultos.push(actBulto);
-
-                }
                 $.ajax({
                   url: "../include/label_lotes.php",
-                  data: {nComp: n_Comp,
-                        bultos: bultos},
+                  data: {nComp: n_Comp},
                   success: function(data){
                     labels = window.open('../include/labels.php/?data='+data)
                     labels.print();

@@ -31,6 +31,14 @@ h2 {
   padding-left: 10px;
 }
 
+h3 {
+  font-style: italic;
+  text-shadow: 1px 1px #ffffff, 3px 3px #5cb85c;
+  color: #ffa64d;
+  text-align: center;
+  padding-left: 10px;
+}
+
 #DashboardProd, #DashboardProv {
   background-color: rgba(215, 153, 28, 0.6);
   height: 100%;
@@ -63,7 +71,7 @@ h2 {
 
 /* The side navigation menu */
 .sidenav {
-    height: 90%; /* 100% Full-height - estabamos usando 87.6% */ 
+    height: 90%; /* 100% Full-height - estabamos usando 87.6% */
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
     z-index: 1; /* Stay on top */

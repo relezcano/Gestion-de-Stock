@@ -285,16 +285,20 @@
     if (isset($_POST['select2'])) {
 
       $idSel2 = $_POST['select2'];
-      $sql = ("DELETE FROM Producto WHERE id = $idSel2");
+      $sql = ("DELETE FROM Producto WHERE id_Prod = $idSel2");
       $ret = $db->query($sql);
-      echo "Producto eliminado exitosamente!!!";
+      ?><script>
+       alert("\tProducto eliminado exitosamente!!!");
+      </script><?
 
       ?><script>
         window.location.replace('productos.php');  // redireccionar a otra pagina.
       </script><?
 
     } else {
-        echo "Seleccione una ID para poder eliminar";
+      ?><script>
+       alert("Seleccione una ID para poder eliminar el producto");
+      </script><?
     }
   }
 

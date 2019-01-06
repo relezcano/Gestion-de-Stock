@@ -35,7 +35,7 @@
           <h2>Ingreso de Mercaderia</h2>
 
           <div class="row" style="float: left; width: 100%; margin-left: 0%; margin-bottom: 5px">
-            <span onclick="window.open('select_Prov.php');"><strong>Proveedor: </strong></span>
+            <span onclick="window.open('select_Prov.php');" style="cursor: pointer"><strong>Proveedor: </strong></span>
             <input type="text" name="Prov" placeholder="Ingrese id del proveedor" style="width: 160px; color: black; border-radius: 30px" onkeyup="setProvDataParent(this);" onkeypress="return restrictCharacters(this, event, digitos);">
           </div>
 
@@ -69,7 +69,7 @@
 
               <tr id="tr1">
                 <td style="width: 70px" id="numOfRow">1</td>  <!--Numero de Item-->
-                <td style="width: 250px"> <input type="hidden" name="id_product1" value="" id="1"> <span id="Prod_name" onclick="popUpWin(this);" >Seleccionar producto</span> </td> <!--Nombre del producto-->
+                <td style="width: 250px; cursor: pointer"> <input type="hidden" name="id_product1" value="" id="1"> <span id="Prod_name" onclick="popUpWin(this);" >Seleccionar producto</span> </td> <!--Nombre del producto-->
                 <td><span>$-</span></td>                      <!--Precio del Producto-->
                 <td style="width: 100px">-</td>               <!--Cantidad del Producto-->
                 <td style="width: 100px">-</td>                <!--Cantidad de bultos-->
