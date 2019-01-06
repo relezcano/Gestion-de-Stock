@@ -227,8 +227,7 @@ function endSellProcess(action){
                 vuelto: vuelto,
                 sobrante: sobrante,
                 prods: id_Prod,
-                cants: cant,
-                bultos: bultos},
+                cants: cant},
           success: function(data){
             console.log(data);
             if(data == '100'){
