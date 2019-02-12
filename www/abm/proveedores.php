@@ -183,7 +183,7 @@
                   <th scope="col" style="text-align: center">Nombre</th>
                   <th scope="col" style="text-align: center">Teléfono</th>
                   <th scope="col" style="text-align: center">Dirección</th>
-                  <th scope="col" style="text-align: center">Concurrencia (días)</th>
+                  <th scope="col" style="text-align: center">Concurrencia</th>
                   <th scope="col" style="text-align: center">Observaciones</th>
                 </tr>
               </thead>
