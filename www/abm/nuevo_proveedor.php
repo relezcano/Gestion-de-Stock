@@ -112,7 +112,7 @@
 			require '../db/conexion.php';
 			$db = new MyDB('../db');
 
-			$query = "INSERT INTO Proveedor (name_Prov, tel, Prov, dir_Prov, conc, obs_Prov) VALUES ('$name', '$tel', '$dir', '$conc', '$obs')";
+			$query = "INSERT INTO Proveedor (name_Prov, tel_Prov, dir_Prov, conc, obs_Prov) VALUES ('$name', '$tel', '$dir', '$conc', '$obs')";
 
 			$db->exec($query);
 
