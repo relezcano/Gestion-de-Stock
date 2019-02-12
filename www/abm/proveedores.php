@@ -181,15 +181,19 @@
                 <tr>
                   <th scope="col" style="text-align: center">ID</th>
                   <th scope="col" style="text-align: center">Nombre</th>
-                  <th scope="col" style="text-align: center">Concurrencia</th>
+                  <th scope="col" style="text-align: center">Teléfono</th>
+                  <th scope="col" style="text-align: center">Dirección</th>
+                  <th scope="col" style="text-align: center">Concurrencia (días)</th>
                   <th scope="col" style="text-align: center">Observaciones</th>
                 </tr>
               </thead>
               <tbody id="myTable">
-                <tr>
+                <tr style="text-align: center">
                   <? while($row = $ret->fetchArray(SQLITE3_ASSOC)){?>
                     <td><?echo $row['id_Prov'];?></td>
                     <td><?echo $row['name_Prov'];?></td>
+                    <td><?echo $row['tel_Prov'];?></td>
+                    <td><?echo $row['dir_Prov'];?></td>
                     <td><?echo $row['conc'];?></td>
                     <td><?echo $row['obs_Prov'];?></td>
                 </tr>
