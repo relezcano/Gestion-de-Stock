@@ -14,8 +14,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/npm.js"></script>
-    <script src="js/dropdown.js"></script>
-    <script src="js/print_label.js"></script>
+    <script src="js/print_labels.js"></script>
     <script src="js/char_restriction.js"></script>
 
   </head>
@@ -29,18 +28,23 @@
         </div>
 
         <div id="bottomDiv">
+
           <div class="row" style="float: left; width: 100%; margin-bottom: 5px; margin-top: 10px">
             <div class="col-md-12">
               <label style="cursor: pointer" onclick="window.open('select_Comp.php');"><strong>N° Comprobante: </strong></label>
-              <input type="hidden" name="n_Comp" value="">
-              <input type="text" placeholder=" Ingrese num comprobante" name="input_Comp" onkeypress="setCompParent(e)" style="width: 165px; color: black; border-radius: 30px; height: 30px" onkeypress="return restrictCharacters(this, event, comprobante)">
+              <input type="text" placeholder=" Ingrese num comprobante" name="input_Comp" onkeyup="setCompParent(this)" style="width: 180px; color: black; border-radius: 30px; height: 30px" onkeypress="return restrictCharacters(this, event, comprobante)">
               <br><br>
             </div>
+            <div class="col-md-12">
+              <div id="CompData">
+              </div>
+            </div>
           </div>
+
           <div class="row" style="margin: 0;margin-top: 0;">
               <div class="col-md-4"></div>
               <div class="col-md-2">
-                <button type="button" class="btn btn-success" onclick="endPrintLabel('print');"><span class="glyphicon glyphicon-print"></span> Imprimir</button>
+                <button type="button" class="btn btn-success" onclick="endPrintLabel();"><span class="glyphicon glyphicon-print"></span> Imprimir</button>
               </div>
               <div class="col-md-2">
                 <button type="button" class="btn btn-danger" onclick="window.close();"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>

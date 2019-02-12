@@ -15,7 +15,7 @@
     <script src="../js/bootstrap.js"></script>
     <script src="../js/npm.js"></script>
     <script src="../js/dropdown.js"></script>
-    <script src="../js/print_label.js"></script>
+    <script src="../js/print_labels.js"></script>
 
   </head>
   <body>
@@ -27,7 +27,7 @@
       <div class="row">
 
         <div class="col-md-8">
-          <h3 style="margin: auto"><strong>Seleccione comprobante a imprimir</strong></h3>
+          <h3 style="margin: auto; font-style: italic; text-shadow: 2px 2px #000000; color: #ffa64d; font-size: 32px"><strong>Seleccione comprobante a imprimir</strong></h3>
         </div>
 
         <div class="col-md-4">
@@ -62,16 +62,16 @@
 
               <tbody id="myTable">
                 <? while($Comp = $resComp->fetchArray(SQLITE3_ASSOC)){ ?>
-                <tr style="cursor: pointer">
+                <tr>
                   <?
                     $n_Comp     = $Comp['n_Comp'];
                     $date_Alt   = $Comp['date_Alt'];
                     $name_Prov  = $Comp['name_Prov'];
                     ?>
-                    <td onclick="setComp()"><?echo $n_Comp;?></td>
-                    <td onclick="setComp()"><?echo $name_Prov;?></td>
-                    <td onclick="setComp()"><?echo $date_Alt;?></td>
-                    <td style="text-align: center"><button class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button></td>
+                    <td onclick="setCompPopUp(this)" style="cursor: pointer"><input type="hidden" name="select_n_Comp" value="<?echo $n_Comp;?>"><?echo $n_Comp;?></td>
+                    <td><?echo $name_Prov;?></td>
+                    <td><?echo $date_Alt;?></td>
+                    <td style="text-align: center"><button class="btn btn-info" onclick="window.open('include/lotes_Comp.php?nComp=<? echo $n_Comp;?>')"><span class="glyphicon glyphicon-search"></span></button></td>
                 </tr>
                 <?}?>
               </tbody>

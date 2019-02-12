@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
-    <title>Seleccione Cliente</title>
+    <title>Seleccione Proveedor</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -27,7 +27,7 @@
       <div class="row">
 
         <div class="col-md-8">
-          <h3 style="margin: auto"><strong>Seleccione el Proveedor</strong></h3>
+          <h3 style="margin: auto; font-style: italic; text-shadow: 2px 2px #000000; color: #ffa64d; font-size: 32px"><strong>Seleccione Proveedor</strong></h3>
         </div>
 
         <div class="col-md-4">

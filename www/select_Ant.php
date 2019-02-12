@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
-    <title>Seleccione pedido</title>
+    <title>Seleccione Pedido</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,6 @@
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/bootstrap.js"></script>
     <script src="../js/npm.js"></script>
-    <script src="../js/dropdown.js"></script>
     <script src="../js/ingresos.js"></script>
 
   </head>
@@ -27,7 +26,7 @@
       <div class="row">
 
         <div class="col-md-8">
-          <h3 style="margin: auto"><strong>Seleccione su pedido</strong></h3>
+          <h3 style="margin: auto; font-style: italic; text-shadow: 2px 2px #000000; color: #ffa64d; font-size: 32px"><strong>Seleccione pedido</strong></h3>
         </div>
 
         <div class="col-md-4">
@@ -66,8 +65,10 @@
                 <tr style="cursor: pointer" onclick="setAntPopUp(this);">
                     <td class="id" style="width: 10%"> <input type="hidden" name="sel_ant_id" value="<?echo $Ant_Prov['id_Ant'];?>"> <?echo $Ant_Prov['id_Ant'];?></td>
                     <td style="width: 30%"><?echo $Ant_Prov['name_Prov'];?></td>
-                    <td style="width: 20%"><?echo $Ant_Prov['date_Ped'];?></td>
-                    <td style="width: 20%"><?echo $Ant_Prov['date_Lleg'];?></td>
+                    <td style="width: 20%"><?$fechaP = date_format(date_create_from_format('Y-m-d', $Ant_Prov['date_Ped']), 'd-m-Y');
+                    echo $fechaP;?></td>
+                    <td style="width: 20%"><?$fechaL = date_format(date_create_from_format('Y-m-d', $Ant_Prov['date_Lleg']), 'd-m-Y');
+                    echo $fechaL;?></td>
                     <td style="width: 20%"><?echo $Ant_Prov['obs_Ant'];?></td>
                 </tr>
                 <?}?>

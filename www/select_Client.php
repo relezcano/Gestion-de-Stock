@@ -27,7 +27,7 @@
       <div class="row">
 
         <div class="col-md-8">
-          <h3 style="margin: auto"><strong>Seleccione Cliente</strong></h3>
+          <h3 style="margin: auto; font-style: italic; text-shadow: 2px 2px #000000; color: #ffa64d; font-size: 32px"><strong>Seleccione Cliente</strong></h3>
         </div>
 
         <div class="col-md-4">
